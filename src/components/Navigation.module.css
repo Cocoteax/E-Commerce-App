@@ -1,3 +1,7 @@
+.navBarLogo {
+  font-weight: 500;
+}
+
 /* CSS for the nav links in the middle */
 .navLinks {
   font-weight: 500;
@@ -23,9 +27,9 @@
 
 @media (max-width: 991px) {
   /* Remove search icon from toggled navbar */
-  .searchIcon {
+  /* .searchIcon {
     display: none;
-  }
+  } */
 
   /* Align icons to center */
   .icon {
