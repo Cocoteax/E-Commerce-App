@@ -1,6 +1,6 @@
 /* Style the section width */
 .container {
-  width: 90%;
+  width: 100%;
 }
 
 /* Set max width for banner */
@@ -18,10 +18,9 @@
 /* Caption styling */
 .banner1Caption {
   color: #1b263b;
-  /* Add media query for caption */
   position: absolute;
   top: 11.5rem;
-  left: 10rem;
+  left: 11rem;
   width: 30rem;
   height: 20rem;
 }
@@ -29,7 +28,7 @@
   color: #1b263b;
   position: absolute;
   top: 11.5rem;
-  left: 10rem;
+  left: 11rem;
   width: 30rem;
   height: 20rem;
 }
@@ -112,15 +111,15 @@
 @media (max-width: 991px) {
   .banner1Caption {
     top: 8rem;
-    left: 7rem;
-    width: 20rem;
+    left: 6rem;
+    width: 21rem;
     height: 20rem;
   }
 
   .banner2Caption {
     top: 10rem;
-    left: 7rem;
-    width: 20rem;
+    left: 6rem;
+    width: 21rem;
     height: 20rem;
   }
 
@@ -130,26 +129,26 @@
   }
 
   .captions p {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 700;
   }
 
   .captions button {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
 /* media query for sm and below */
 @media (max-width: 767px) {
   .banner1Caption {
-    top: 7rem;
+    top: 6rem;
     left: 5rem;
     width: 18rem;
     height: 20rem;
   }
 
   .banner2Caption {
-    top: 8rem;
+    top: 7rem;
     left: 5rem;
     width: 18rem;
     height: 20rem;
@@ -171,7 +170,7 @@
 }
 
 /* media query for xs and below */
-@media (max-width: 500px) {
+@media (max-width: 490px) {
   .banner1Caption {
     top: 2rem;
     left: 2rem;

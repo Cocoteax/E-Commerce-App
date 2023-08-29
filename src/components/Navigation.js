@@ -5,7 +5,7 @@ import { Navbar, Nav, Container, Offcanvas } from "react-bootstrap";
 function Navigation() {
   return (
     <>
-      <Navbar expand="lg" className="mb-3">
+      <Navbar expand="lg" className="mt-2 mb-3">
         <Container fluid>
           <Navbar.Brand href="#home" className={`ms-4 ${styles.navBarLogo}`}>
             E-Commerce
