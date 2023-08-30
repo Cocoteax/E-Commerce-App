@@ -1,0 +1,23 @@
+.footer {
+  background-color: #f6edf0;
+  width: 90%;
+}
+
+.subscriptionRow {
+    border-bottom: 1px solid rgba(212,165,181,0.35);
+}
+
+.subscriptionText {
+    font-weight: 700;
+    font-size: 28px;
+}
+
+@media (max-width: 767px) {
+    .subscriptionButton {
+        margin: 2rem 0;
+    }
+
+    .subscriptionForm {
+        text-align: center;
+    }
+}

@@ -61,7 +61,7 @@ function WomenCategoryCarousel() {
                   return (
                     <>
                       {index === 0 && (
-                        <div className="carousel-item active">
+                        <div className="carousel-item active" key={index}>
                           <div className="row">
                             <div className="col-4 mb-3">
                               <div>
@@ -82,7 +82,7 @@ function WomenCategoryCarousel() {
                         </div>
                       )}
                       {index !== 0 && (
-                        <div className="carousel-item">
+                        <div className="carousel-item" key={index}>
                           <div className="row">
                             <div className="col-4 mb-3">
                               <div>
