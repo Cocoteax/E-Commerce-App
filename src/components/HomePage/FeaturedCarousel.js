@@ -1,25 +1,26 @@
 import React from "react";
-import styles from "./WomenCategoryCarousel.module.css";
+import styles from "./FeaturedCarousel.module.css";
 import Item from "../Item";
 import womenShirt1 from "../../assets/women-shirt-1.webp";
-import womenShirt2 from "../../assets/women-shirt-2.webp";
 import womenShirt3 from "../../assets/women-shirt-3.webp";
+import maleShirt1 from "../../assets/male-shirt-1.webp"
 
 function WomenCategoryCarousel() {
+    // Need to hardcode these data in mongodb to create schema relationships
   const items = [
     [
       { img: womenShirt1, description: "Purple Cardigan", price: "$32.00" },
-      { img: womenShirt2, description: "Knitted Sweater", price: "$28.00" },
+      { img: maleShirt1, description: "Button Shirt", price: "$28.00" },
       { img: womenShirt3, description: "Pineapple Sweater", price: "$45.00" },
     ],
     [
       { img: womenShirt1, description: "Purple Cardigan", price: "$32.00" },
-      { img: womenShirt2, description: "Knitted Sweater", price: "$28.00" },
+      { img: maleShirt1, description: "Button Shirt", price: "$28.00" },
       { img: womenShirt3, description: "Pineapple Sweater", price: "$45.00" },
     ],
     [
       { img: womenShirt1, description: "Purple Cardigan", price: "$32.00" },
-      { img: womenShirt2, description: "Knitted Sweater", price: "$28.00" },
+      { img: maleShirt1, description: "Button Shirt", price: "$28.00" },
       { img: womenShirt3, description: "Pineapple Sweater", price: "$45.00" },
     ],
   ];
@@ -33,7 +34,7 @@ function WomenCategoryCarousel() {
           <div className="col-6 text-end">
             <a
               className="btn btn-outline-dark mb-3 me-1"
-              href="#carouselExampleIndicators2"
+              href="#featuredCarousel"
               role="button"
               data-bs-slide="prev"
             >
@@ -41,7 +42,7 @@ function WomenCategoryCarousel() {
             </a>
             <a
               className="btn btn-outline-dark mb-3 "
-              href="#carouselExampleIndicators2"
+              href="#featuredCarousel"
               role="button"
               data-bs-slide="next"
             >
@@ -50,7 +51,7 @@ function WomenCategoryCarousel() {
           </div>
           <div className="col-12">
             <div
-              id="carouselExampleIndicators2"
+              id="featuredCarousel"
               className="carousel slide"
               data-bs-ride="false"
             >

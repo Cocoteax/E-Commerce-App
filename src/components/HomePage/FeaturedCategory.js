@@ -1,8 +1,8 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import styles from "./WomenCategory.module.css";
-import womenSideBanner from "../../assets/Women Side Banner.avif";
-import WomenCategoryCarousel from "./WomenCategoryCarousel";
+import styles from "./FeaturedCategory.module.css";
+import featuredSideBanner from "../../assets/Featured Side Banner.avif";
+import FeaturedCarousel from "./FeaturedCarousel";
 
 function WomenCategory() {
   return (
@@ -13,19 +13,19 @@ function WomenCategory() {
             <div className={`${styles.sideBanner}`}>
               <img
                 className={`img-fluid ${styles.sideBannerImg}`}
-                src={womenSideBanner}
+                src={featuredSideBanner}
               ></img>
               <span className={`${styles.sideBannerText}`}>
-                <h2 className={`${styles.sideBannerH2}`}>Women's</h2>
-                <a className={`${styles.sideBannerA}`} href="#women">
+                <h2 className={`${styles.sideBannerH2}`}>Featured</h2>
+                <a className={`${styles.sideBannerA}`} href="#shopAll">
                   Discover More
                 </a>
               </span>
             </div>
           </Col>
           <Col md={9} className="">
-            <div className={`${styles.womenCarousel} `}>
-              <WomenCategoryCarousel />
+            <div>
+              <FeaturedCarousel />
             </div>
           </Col>
         </Row>
