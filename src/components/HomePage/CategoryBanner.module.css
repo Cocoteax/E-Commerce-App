@@ -11,21 +11,21 @@
 }
 
 .kidsCategoryLabel {
-  background-image: url("../assets/Kid's\ Category\ Label.jpg");
+  background-image: url("../../assets/Kid's\ Category\ Label.jpg");
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .womensCategoryLabel {
-  background-image: url("../assets/Women's\ Category\ Label.jpg");
+  background-image: url("../../assets/Women's\ Category\ Label.jpg");
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .mensCategoryLabel {
-  background-image: url("../assets/Men\'s\ Category\ Label.avif");
+  background-image: url("../../assets/Men's\ Category\ Label.avif");
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;

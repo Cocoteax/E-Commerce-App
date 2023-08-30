@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./Banner.module.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Animated } from "react-animated-css";
-import bannerModel1 from "../assets/Banner Model (1).jpeg";
-import bannerModel2 from "../assets/Banner Model (2).avif";
+import bannerModel1 from "../../assets/Banner Model (1).jpeg";
+import bannerModel2 from "../../assets/Banner Model (2).avif";
 
 function Banner() {
   return (
@@ -15,6 +15,7 @@ function Banner() {
               className={`carousel slide`}
               id="slider1"
               data-bs-ride="carousel"
+              data-bs-slide="true"
             >
               <div className={`carousel-inner`}>
                 <div className={`carousel-item active ${styles.bannerColumn}`}>

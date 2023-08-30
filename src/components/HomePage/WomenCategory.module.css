@@ -1,0 +1,54 @@
+.container {
+  width: 90%;
+}
+.column {
+    height: 35rem;
+}
+/* Scale the image according to the column width */
+.sideBanner {
+  height: 100%;
+  position: relative;
+}
+
+.sideBannerImg {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.sideBannerText {
+  height: 5rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 53%;
+  margin: auto 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sideBannerH2 {
+  font-size: 32px;
+  color: #1b263b;
+  font-weight: 1000;
+}
+
+.sideBannerA {
+  font-size: 18px;
+  color: #1b263b;
+  font-weight: 900;
+  text-underline-offset: 0.8rem;
+}
+
+.sideBannerA:hover {
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .column { 
+        height: 25rem;
+    }
+}
