@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./Banner.module.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Animated } from "react-animated-css";
-import bannerModel2 from "../assets/Banner Model (2).jpeg";
-import bannerModel4 from "../assets/Banner Model (4).avif";
+import bannerModel1 from "../assets/Banner Model (1).jpeg";
+import bannerModel2 from "../assets/Banner Model (2).avif";
 
 function Banner() {
   return (
@@ -11,11 +11,15 @@ function Banner() {
       <Container fluid className={styles.container}>
         <Row className="justify-content-center">
           <Col md={12} className={`${styles.bannerColumn} g-0`}>
-            <div className={`carousel slide`} id="slider1">
+            <div
+              className={`carousel slide`}
+              id="slider1"
+              data-bs-ride="carousel"
+            >
               <div className={`carousel-inner`}>
                 <div className={`carousel-item active ${styles.bannerColumn}`}>
                   <img
-                    src={bannerModel2}
+                    src={bannerModel1}
                     text="First Slide"
                     alt="Banner Model 1"
                     className={`${styles.image} img-fluid`}
@@ -55,8 +59,8 @@ function Banner() {
                 </div>
                 <div className={`carousel-item ${styles.bannerColumn}`}>
                   <img
-                    src={bannerModel4}
-                    alt="Banner Model 3"
+                    src={bannerModel2}
+                    alt="Banner Model 2"
                     text="Second Slide"
                     className={`${styles.image} img-fluid`}
                   />

@@ -40,6 +40,9 @@ function Navigation() {
                 <Nav.Link href="#women" className={styles.navLinks}>
                   WOMEN
                 </Nav.Link>
+                <Nav.Link href="#kids" className={styles.navLinks}>
+                  KIDS
+                </Nav.Link>
                 <Nav.Link href="#blog" className={styles.navLinks}>
                   BLOG
                 </Nav.Link>
@@ -48,7 +51,7 @@ function Navigation() {
                 </Nav.Link>
               </Nav>
 
-              <Nav className="ms-auto me-4">
+              <Nav className="ms-auto align-items-center">
                 <div
                   className={`d-flex justify-content-between align-items-center ${styles.iconDiv}`}
                 >
@@ -56,13 +59,13 @@ function Navigation() {
                     href="#search"
                     className={`${styles.icon} ${styles.searchIcon}`}
                   >
-                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i className="fa-solid fa-magnifying-glass"></i>
                   </Nav.Link>
                   <Nav.Link href="#profile" className={styles.icon}>
-                    <i class="fa-solid fa-user"></i>
+                    <i className="fa-solid fa-user"></i>
                   </Nav.Link>
-                  <Nav.Link href="#profile" className={styles.icon}>
-                    <i class="fa-solid fa-cart-shopping"></i>
+                  <Nav.Link href="#cart" className={styles.icon}>
+                    <i value={"123"} className={`fa-solid fa-cart-shopping ${styles.cart}`}></i>
                   </Nav.Link>
                 </div>
               </Nav>

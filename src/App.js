@@ -1,5 +1,6 @@
 import "./App.css";
 import Banner from "./components/Banner";
+import CategoryBanner from "./components/CategoryBanner";
 import Navigation from "./components/Navigation";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <>
       <Navigation />
       <Banner />
+      <CategoryBanner />
     </>
   );
 }

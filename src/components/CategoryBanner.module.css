@@ -1,0 +1,59 @@
+.container {
+  width: 90%;
+}
+
+.columnContainer {
+  position: relative;
+}
+
+.categoryLabel {
+  height: 16rem;
+}
+
+.kidsCategoryLabel {
+  background-image: url("../assets/Kid's\ Category\ Label.jpg");
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.womensCategoryLabel {
+  background-image: url("../assets/Women's\ Category\ Label.jpg");
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.mensCategoryLabel {
+  background-image: url("../assets/Men\'s\ Category\ Label.avif");
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.categoryLabel::before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 20px solid #ffffff;
+  border-radius: 20px;
+  content: "";
+  opacity: 0.3;
+  width: calc(100%-70px);
+  height: calc(100%-60px);
+  transform: scale(0);
+  transition: all 0.3s;
+}
+
+.categoryLabel:hover::before {
+  transform: scale(0.5);
+}
+
+.button {
+  font-weight: 700;
+  font-size: 18px;
+  width: 7rem;
+}
