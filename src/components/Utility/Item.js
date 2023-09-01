@@ -4,30 +4,36 @@ import { Card } from "react-bootstrap";
 import ItemActions from "./ItemActions";
 
 function Item(props) {
-  const [showActions, setShowActions] = useState(false);
+	const [showActions, setShowActions] = useState(false);
 
-  const showActionsHandler = () => {
-    setShowActions(true);
-  };
+	const showActionsHandler = () => {
+		setShowActions(true);
+	};
 
-  const hideActionsHandler = () => {
-    setShowActions(false);
-  };
-  return (
-    <>
-      {/* Handle touch event later */}
-      <Card
-        className={`${styles.card} text-center`}
-        onMouseEnter={showActionsHandler}
-        onMouseLeave={hideActionsHandler}
-      >
-        <Card.Img src={props.item.img} className={`${styles.itemImage}`} />
-        {showActions && <ItemActions />}
-      </Card>
-      <div className={`${styles.itemDescription} text-center mt-3`}>{props.item.description}</div>
-      <div className={`${styles.itemPrice} text-center mt-2`}>{props.item.price}</div>
-    </>
-  );
+	const hideActionsHandler = () => {
+		setShowActions(false);
+	};
+	return (
+		<Card
+			className={`${styles.card} text-center border-0`}
+			onMouseEnter={showActionsHandler}
+			onMouseLeave={hideActionsHandler}
+		>
+			<Card.Img src={props.item.img} className={`${styles.itemImage} p-0 m-0 img-fluid`} />
+			<Card.Body>
+				<Card.Subtitle className={`${styles.itemCategory} mb-2`}>
+					{props.item.category}
+				</Card.Subtitle>
+				<Card.Title className={`${styles.itemDescription}`}>
+					{props.item.description}
+				</Card.Title>
+				<Card.Text className={`${styles.itemPrice}`}>
+					{props.item.price}
+				</Card.Text>
+			</Card.Body>
+			{showActions && <ItemActions />}
+		</Card>
+	);
 }
 
 export default Item;

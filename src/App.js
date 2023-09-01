@@ -3,6 +3,8 @@ import HomePage from "./pages/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NavAndFooterLayout from "./pages/NavAndFooterLayout";
 import Error from "./pages/Error";
+import ShopAllPage from "./pages/ShopAllPage";
+import ItemDetails from "./components/Utility/ItemDetails";
 
 const router = createBrowserRouter([
 	{
@@ -13,6 +15,14 @@ const router = createBrowserRouter([
 				index: true,
 				path: "",
 				element: <HomePage />,
+			},
+			{
+				path: "shopAll",
+				element: <ShopAllPage />,
+			},
+			{
+				path: "shopAll/:productID",
+				element: <ItemDetails />,
 			},
 		],
 		errorElement: <Error />,

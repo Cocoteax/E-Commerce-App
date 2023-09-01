@@ -1,27 +1,42 @@
 .card {
-  /* width: 18rem; */
-  /* height: 25rem; */
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
+/* Since our entire card scales with the column height, setting the height for card.image will only scale according to how many % the image can take in the card */
 .itemImage {
-  width: 100%;
-  /* Adjust the height to control image height for standardization */
-  height: 22.5rem; 
-  object-fit: cover;
-  position: relative;
+	width: 100%;
+	/* Setting height to 100% will not take up the entire column height, but only 100% of what it's allowed to take because card still needs to cater for card.body */
+	height: 100%;
+	object-fit: cover;
+	position: relative;
+}
+
+.itemCategory {
+	color: rgba(0, 0, 0, 0.6);
+	font-size: 0.9rem;
 }
 
 .itemDescription {
-  color: #252525;
-  font-weight: 500;
-  font-size: 18px;
+	color: #252525;
+	font-weight: 500;
+	font-size: 18px;
 }
 
 .itemPrice {
-  color: #e7ab3c;
-  font-size: 20px;
-  font-weight: 700;
-  
+	color: #e7ab3c;
+	font-size: 20px;
+	font-weight: 700;
+}
+
+@media (max-width: 991px) {
+	.itemDescription {
+		font-size: 16px;
+	}
+	.itemCategory {
+		font-size: 0.7rem;
+	}
+	.itemPrice {
+		font-size: 16px;
+	}
 }

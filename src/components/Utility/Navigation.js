@@ -38,7 +38,7 @@ function Navigation() {
 									<span>HOME</span>
 								</NavLink>
 								<NavLink
-									to="items"
+									to="shopAll"
 									className={({ isActive }) =>
 										isActive
 											? `${styles.active} mx-3 my-2`
@@ -122,7 +122,7 @@ function Navigation() {
 										className={`${styles.icon} ${styles.searchIcon}`}
 									>
 										<i
-											value={"123"}
+											value={"12"}
 											className={`fa-solid fa-cart-shopping ${styles.cart}`}
 										></i>
 									</NavLink>

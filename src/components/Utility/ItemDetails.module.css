@@ -1,0 +1,26 @@
+.container {
+	width: 90%;
+}
+
+.itemImage {
+	height: 40rem;
+	width: 35rem;
+	object-fit: cover;
+}
+
+.breadcrumb {
+	color: #777777;
+	text-decoration: none;
+}
+
+.productCategory {
+	font-weight: 400;
+}
+
+.productName {
+    font-weight: 600;
+}
+
+.productPrice {
+    font-weight: 800;
+}
