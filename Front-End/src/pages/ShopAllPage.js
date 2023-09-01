@@ -1,7 +1,6 @@
 import React from "react";
 import ShopAllHeader from "../components/ShopAllPage/ShopAllHeader";
 import ShopAllItems from "../components/ShopAllPage/ShopAllItems";
-import ItemDetails from "../components/Utility/ItemDetails";
 import { useNavigate } from "react-router-dom";
 
 function ShopAllPage() {

@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./ShopAllItems.module.css";
 import womenFashion1 from "../../assets/women-fashion-1.avif";
-import womenFashion2 from "../../assets/women-fashion-2.avif"
-import womenFashion3 from "../../assets/women-fashion-3.avif"
-import womenFashion4 from "../../assets/women-fashion-4.avif"
-import maleFashion1 from "../../assets/male-fashion-1.avif"
-import maleFashion2 from "../../assets/male-fashion-2.avif"
-import maleFashion3 from "../../assets/male-fashion-3.avif"
-import maleFashion4 from "../../assets/male-fashion-4.avif"
+import womenFashion2 from "../../assets/women-fashion-2.avif";
+import womenFashion3 from "../../assets/women-fashion-3.avif";
+import womenFashion4 from "../../assets/women-fashion-4.avif";
+import maleFashion1 from "../../assets/male-fashion-1.avif";
+import maleFashion2 from "../../assets/male-fashion-2.avif";
+import maleFashion3 from "../../assets/male-fashion-3.avif";
+import maleFashion4 from "../../assets/male-fashion-4.avif";
 import Item from "../Utility/Item";
 
 // // Need to hardcode these data in mongodb to create schema relationships
@@ -30,31 +30,31 @@ const items = [
 		description: "Suit",
 		price: "$45.00",
 	},
-    {
+	{
 		img: maleFashion2,
 		category: "Male",
 		description: "Shirt",
 		price: "$45.00",
 	},
-    {
+	{
 		img: maleFashion3,
 		category: "Male",
 		description: "Shirt",
 		price: "$45.00",
 	},
-    {
+	{
 		img: womenFashion3,
 		category: "Women",
 		description: "Suit",
 		price: "$45.00",
 	},
-    {
+	{
 		img: maleFashion4,
 		category: "Male",
 		description: "Shirt",
 		price: "$45.00",
 	},
-    {
+	{
 		img: womenFashion4,
 		category: "Women",
 		description: "Suit",
@@ -62,6 +62,7 @@ const items = [
 	},
 ];
 function ShopAllItems() {
+
 	return (
 		<section className="mb-5">
 			<div className={`container ${styles.container}`}>

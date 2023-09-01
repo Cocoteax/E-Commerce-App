@@ -1,7 +1,6 @@
 import React from "react";
 import { Col, Container, Row, Breadcrumb, Button } from "react-bootstrap";
 import maleFashion1 from "../../assets/male-fashion-1.avif"
-import bannerImg from "../../assets/Featured Side Banner.avif"
 import styles from "./ItemDetails.module.css";
 import { Link } from "react-router-dom";
 
