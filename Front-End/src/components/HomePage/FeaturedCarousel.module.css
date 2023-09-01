@@ -1,0 +1,12 @@
+.carouselLabel {
+	font-weight: 900;
+}
+
+.container {
+    position:relative;
+}
+
+.carousel {
+    height: 20rem;
+    position: absolute;
+}

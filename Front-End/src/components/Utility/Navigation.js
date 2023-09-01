@@ -21,7 +21,10 @@ function Navigation() {
 					</Navbar.Toggle>
 					<Navbar.Offcanvas placement="end">
 						<Offcanvas.Header closeButton>
-							<Offcanvas.Title id={`offcanvasNavbarLabel-expand-lg`} className={styles.navBarLogo}>
+							<Offcanvas.Title
+								id={`offcanvasNavbarLabel-expand-lg`}
+								className={styles.navBarLogo}
+							>
 								E-Commerce
 							</Offcanvas.Title>
 						</Offcanvas.Header>
@@ -38,7 +41,7 @@ function Navigation() {
 									<span>HOME</span>
 								</NavLink>
 								<NavLink
-									to="shopAll"
+									to="products"
 									className={({ isActive }) =>
 										isActive
 											? `${styles.active} mx-3 my-2`

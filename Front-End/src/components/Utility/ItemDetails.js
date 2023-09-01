@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Row, Breadcrumb, Button } from "react-bootstrap";
-import item1 from "../../assets/male-shirt-1.webp";
+import maleFashion1 from "../../assets/male-fashion-1.avif"
 import bannerImg from "../../assets/Featured Side Banner.avif"
 import styles from "./ItemDetails.module.css";
 import { Link } from "react-router-dom";
@@ -9,9 +9,9 @@ function ItemDetails() {
 	return (
 		<section className={`mt-5 mb-5`}>
 			<Container fluid className={`${styles.container}`}>
-				<Row className={``}>
+				<Row className={`gy-4`}>
 					<Col md={6} className={`d-flex justify-content-center`}>
-						<img src={bannerImg} className={`${styles.itemImage}`}></img>
+						<img src={maleFashion1} className={`${styles.itemImage}`}></img>
 					</Col>
 					<Col md={6}>
 						<Breadcrumb>
