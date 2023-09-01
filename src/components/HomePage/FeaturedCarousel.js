@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./FeaturedCarousel.module.css";
-import Item from "../Item";
+import Item from "../Utility/Item";
 import womenShirt1 from "../../assets/women-shirt-1.webp";
 import womenShirt3 from "../../assets/women-shirt-3.webp";
 import maleShirt1 from "../../assets/male-shirt-1.webp"
@@ -53,7 +53,7 @@ function FeaturedCarousel() {
                         <div
                             id="featuredCarousel"
                             className="carousel slide"
-                            data-bs-ride="carousel"
+                            data-bs-ride="false"
                             data-bs-slide="true"
                         >
                             <div className="carousel-inner">

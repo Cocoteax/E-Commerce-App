@@ -9,7 +9,7 @@ function Footer() {
                     className={`${styles.subscriptionRow} justify-content-center align-items-center`}
                 >
                     <Col md={6} className={`py-4 text-center`}>
-                        <h2 className={`m-0 ${styles.subscriptionText}`}>
+                        <h2 className={`${styles.subscriptionText}`}>
                             Subscribe to our newsletter
                         </h2>
                     </Col>
@@ -37,7 +37,7 @@ function Footer() {
 
                 <Row className={`justify-content-center align-items-center`}>
                     <Col className={`py-3 text-center`}>
-                        <p className={`m-0`}>
+                        <p>
                             Copyright © 2023 E-Commerce | Powered by MERN Stack
                         </p>
                     </Col>

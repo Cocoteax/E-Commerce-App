@@ -1,0 +1,87 @@
+.navBarLogo {
+	font-weight: 700;
+	text-decoration: none;
+	color: black;
+}
+
+/* CSS for the nav links in the middle */
+.navLink {
+	font-weight: 500;
+	font-size: 16px;
+	color: rgba(0, 0, 0, 0.65);
+	text-decoration: none;
+}
+.navLink:hover {
+	color: #778da9;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.8rem;
+}
+
+/* CSS for the icons on the right */
+.iconDiv {
+	width: 8rem;
+}
+
+.icon {
+	color: black;
+}
+
+/* CSS for navbar toggler */
+.navbarToggler,
+.navbarToggler:focus,
+.navbarToggler:active {
+	outline: none;
+	border: none;
+	box-shadow: none;
+}
+
+.active {
+	color: black;
+	font-weight: 700;
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.8rem;
+}
+
+/* .cart:after {
+  content: attr(value);
+  font-size: 10px;
+  color: #fff;
+  background: red;
+  border-radius: 50%;
+  padding: 2px 5px;
+  position: relative;
+  left: -6px;
+  top: -10px;
+  opacity: 0.9;
+} */
+
+@media (max-width: 991px) {
+	/* Remove search icon from toggled navbar */
+	/* .searchIcon {
+    display: none;
+  } */
+
+	/* Align icons to center */
+	.icon {
+		margin: 1rem 1.5rem 1rem 1.5rem;
+	}
+	.iconDiv {
+		width: 100%;
+		justify-content: center !important;
+	}
+
+	.iconNav {
+		margin-right: 0 !important;
+	}
+
+	/* Center align the navlinks in the middle */
+	.navLink {
+		margin-bottom: 1rem !important;
+	}
+
+	.active {
+		margin-bottom: 1rem !important;
+	}
+}
