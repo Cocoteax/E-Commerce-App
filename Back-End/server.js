@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 const bodyParser = require("body-parser");
 const path = require("path");
 const morgan = require("morgan"); // 3rd party logger
+const errorHandler = require("./middleware/error"); // Custom error handler
 const cors = require("cors"); // Required to enable different domains to access API
 
 // Load env variables from config.env file into process.env
@@ -13,6 +14,7 @@ const PORT = process.env.PORT || 5500;
 const NODE_ENV = process.env.NODE_ENV; // Get node env from npm scripts
 
 // Import routes
+const productRoutes = require("./routes/products");
 
 // ========== Set up middlewares ========== //
 app.use(bodyParser.urlencoded({ extended: false })); // For FORM html elements
@@ -29,6 +31,13 @@ app.use(cors());
 // Set static folder for serving static files such as images
 // This allows the internet to be able to retrieve files from the local static folder by going to domain/public/filePath
 app.use(express.static(path.join(__dirname, "public")));
+
+// ========== Set up routes ========== //
+app.use("/api/v1/products", productRoutes);
+
+// Error handler middleware
+// NOTE: This middleware must come after routes since we pass the error to errorHandler by calling next() within controllers
+app.use(errorHandler);
 
 // ========== Start Application ========== //
 const startApp = async () => {

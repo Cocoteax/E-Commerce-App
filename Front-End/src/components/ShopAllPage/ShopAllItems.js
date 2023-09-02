@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import styles from "./ShopAllItems.module.css";
 import womenFashion1 from "../../assets/women-fashion-1.avif";
 import womenFashion2 from "../../assets/women-fashion-2.avif";

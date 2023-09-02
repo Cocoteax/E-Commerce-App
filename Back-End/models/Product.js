@@ -23,6 +23,10 @@ const ProductSchema = new Schema({
     imageURL: {
         type: String,
         default: "no-photo.jpg"
+    },
+    featured: {
+        type: Boolean,
+        required: [true, "Please state if featured or not (Boolean)"]
     }
 });
 

@@ -4,6 +4,7 @@ import { Card } from "react-bootstrap";
 import ItemActions from "./ItemActions";
 
 function Item(props) {
+	const BASE_URL = "http://localhost:5500/images/";
 	const [showActions, setShowActions] = useState(false);
 
 	const showActionsHandler = () => {
@@ -13,25 +14,29 @@ function Item(props) {
 	const hideActionsHandler = () => {
 		setShowActions(false);
 	};
+
 	return (
 		<Card
 			className={`${styles.card} text-center border-0`}
 			onMouseEnter={showActionsHandler}
 			onMouseLeave={hideActionsHandler}
 		>
-			<Card.Img src={props.item.img} className={`${styles.itemImage} p-0 m-0 img-fluid`} />
+			<Card.Img
+				src={`${BASE_URL}${props.item.imageURL}`}
+				className={`${styles.itemImage} p-0 m-0 img-fluid`}
+			/>
 			<Card.Body>
 				<Card.Subtitle className={`${styles.itemCategory} mb-2`}>
 					{props.item.category}
 				</Card.Subtitle>
-				<Card.Title className={`${styles.itemDescription}`}>
-					{props.item.description}
+				<Card.Title className={`${styles.itemTitle}`}>
+					{props.item.title}
 				</Card.Title>
 				<Card.Text className={`${styles.itemPrice}`}>
 					{props.item.price}
 				</Card.Text>
 			</Card.Body>
-			{showActions && <ItemActions />}
+			{showActions && <ItemActions id={props.item._id} />}
 		</Card>
 	);
 }

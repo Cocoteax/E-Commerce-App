@@ -1,5 +1,4 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
 import styles from "./FeaturedCategory.module.css";
 import featuredSideBanner from "../../assets/Featured Side Banner.avif";
 import FeaturedCarousel from "./FeaturedCarousel";
@@ -16,6 +15,7 @@ function FeaturedCategory() {
 					<div className={`col-md-3 ${styles.column}`}>
 						<img
 							src={featuredSideBanner}
+                            alt="sidebanner"
 							className={`img-fluid ${styles.sideBannerImg}`}
 						></img>
 						<span className={`${styles.sideBannerText}`}>

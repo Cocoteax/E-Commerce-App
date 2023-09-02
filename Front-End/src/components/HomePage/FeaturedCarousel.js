@@ -1,75 +1,13 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styles from "./FeaturedCarousel.module.css";
 import Item from "../Utility/Item";
-import womenFeatured1 from "../../assets/women-fashion-1.avif";
-import womenFeatured2 from "../../assets/women-fashion-2.avif";
-import maleFeatured1 from "../../assets/male-fashion-1.avif";
-
-// Need to hardcode these data in mongodb to create schema relationships
-const items = [
-	[
-		{
-			img: womenFeatured1,
-			category: "Women",
-			description: "White Suit",
-			price: "$32.00",
-		},
-		{
-			img: maleFeatured1,
-			category: "Men",
-			description: "Shirt",
-			price: "$28.00",
-		},
-		{
-			img: womenFeatured2,
-			category: "Women",
-			description: "Suit",
-			price: "$45.00",
-		},
-	],
-	[
-		{
-			img: womenFeatured1,
-			category: "Women",
-			description: "Suit",
-			price: "$32.00",
-		},
-		{
-			img: maleFeatured1,
-			category: "Men",
-			description: "Shirt",
-			price: "$28.00",
-		},
-		{
-			img: womenFeatured2,
-			category: "Women",
-			description: "Suit",
-			price: "$45.00",
-		},
-	],
-	[
-		{
-			img: womenFeatured1,
-			category: "Women",
-			description: "Suit",
-			price: "$32.00",
-		},
-		{
-			img: maleFeatured1,
-			category: "Men",
-			description: "Shirt",
-			price: "$28.00",
-		},
-		{
-			img: womenFeatured2,
-			category: "Women",
-			description: "Suit",
-			price: "$45.00",
-		},
-	],
-];
 
 function FeaturedCarousel() {
+    // Get access to featured products from redux store
+	const items = useSelector(
+		(state) => state.featuredProductSlice.featuredProducts
+	);
 	return (
 		<>
 			<div className={`container-fluid ${styles.container}`}>
@@ -104,19 +42,6 @@ function FeaturedCarousel() {
 						data-bs-slide="true"
 					>
 						<div className="carousel-inner">
-							{/* <div className="carousel-item active">
-								<div className={`row`}>
-									<div className={`col-4 mb-3`}>
-										<Item item={items[0][0]} />
-									</div>
-									<div className="col-4 mb-3">
-										<Item item={items[0][1]} />
-									</div>
-									<div className="col-4 mb-3">
-										<Item item={items[0][2]} />
-									</div>
-								</div>
-							</div> */}
 							{/* use .map() to create each carousel slide */}
 							{items.map((item, index) => {
 								return (

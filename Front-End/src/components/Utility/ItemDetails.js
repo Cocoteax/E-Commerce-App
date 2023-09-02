@@ -10,7 +10,7 @@ function ItemDetails() {
 			<Container fluid className={`${styles.container}`}>
 				<Row className={`gy-4`}>
 					<Col md={6} className={`d-flex justify-content-center`}>
-						<img src={maleFashion1} className={`${styles.itemImage}`}></img>
+						<img src={maleFashion1} className={`${styles.itemImage}`} alt="item"></img>
 					</Col>
 					<Col md={6}>
 						<Breadcrumb>
