@@ -11,7 +11,7 @@ const items = [
 		{
 			img: womenFeatured1,
 			category: "Women",
-			description: "Suit",
+			description: "White Suit",
 			price: "$32.00",
 		},
 		{

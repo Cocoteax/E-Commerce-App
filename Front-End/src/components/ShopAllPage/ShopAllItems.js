@@ -15,7 +15,7 @@ const items = [
 	{
 		img: womenFashion1,
 		category: "Women",
-		description: "Suit",
+		description: "White Suit",
 		price: "$32.00",
 	},
 	{
@@ -62,7 +62,6 @@ const items = [
 	},
 ];
 function ShopAllItems() {
-
 	return (
 		<section className="mb-5">
 			<div className={`container ${styles.container}`}>

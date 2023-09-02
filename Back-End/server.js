@@ -28,7 +28,7 @@ app.use(cors());
 
 // Set static folder for serving static files such as images
 // This allows the internet to be able to retrieve files from the local static folder by going to domain/public/filePath
-// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 // ========== Start Application ========== //
 const startApp = async () => {
