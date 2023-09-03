@@ -7,6 +7,7 @@ import ShopAllPage from "./pages/ShopAllPage";
 import ItemDetails from "./components/Utility/ItemDetails";
 import MenPage from "./pages/MenPage";
 import WomenPage from "./pages/WomenPage";
+import KidsPage from "./pages/KidsPage";
 
 const router = createBrowserRouter([
 	{
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
 			{
 				path: "products/women",
 				element: <WomenPage />,
+			},
+			{
+				path: "products/kids",
+				element: <KidsPage />,
 			},
 			{
 				path: "products/:productID",

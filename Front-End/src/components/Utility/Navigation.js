@@ -72,7 +72,7 @@ function Navigation() {
 									<span>WOMEN</span>
 								</NavLink>
 								<NavLink
-									to="kids"
+									to="products/kids"
 									className={({ isActive }) =>
 										isActive
 											? `${styles.active} mx-3 my-2`
