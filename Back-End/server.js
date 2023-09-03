@@ -15,6 +15,7 @@ const NODE_ENV = process.env.NODE_ENV; // Get node env from npm scripts
 
 // Import routes
 const productRoutes = require("./routes/products");
+const cartRoutes = require("./routes/carts");
 
 // ========== Set up middlewares ========== //
 app.use(bodyParser.urlencoded({ extended: false })); // For FORM html elements
@@ -25,6 +26,22 @@ if (process.env.NODE_ENV === "development") {
 	app.use(morgan("dev"));
 }
 
+// // Middleware to retrieve the actual mongoose user object with all its defined schema methods
+// // NOTE: If we access req.session.user, it will only contain the raw user data and not the methods of the user object
+// app.use(async (req, res, next) => {
+// 	try {
+// 		if (!req.session.user) {
+// 			return next();
+// 		}
+// 		// If there's an existing session user, then we store the user object with all its methods into req.user
+// 		let user = await User.findById(req.session.user._id);
+// 		req.user = user;
+// 		next();
+// 	} catch (e) {
+// 		console.log(e);
+// 	}
+// });
+
 // Enable API to be public so that it can be accessed by different domains (Required for full stack applications)
 app.use(cors());
 
@@ -34,6 +51,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // ========== Set up routes ========== //
 app.use("/api/v1/products", productRoutes);
+app.use("/api/v1/carts", cartRoutes);
 
 // Error handler middleware
 // NOTE: This middleware must come after routes since we pass the error to errorHandler by calling next() within controllers

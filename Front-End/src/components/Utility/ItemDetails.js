@@ -2,12 +2,21 @@ import React from "react";
 import { Col, Container, Row, Breadcrumb, Button } from "react-bootstrap";
 import styles from "./ItemDetails.module.css";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../../store/cart-slice";
 
 function ItemDetails() {
+	const dispatch = useDispatch();
+
 	const BASE_URL = "http://localhost:5500/images/";
 	// Fetch item details to be displayed from redux store
 	const product = useSelector((state) => state.productSlice.singleProduct);
+
+	// Dispatch action thunk to add to cart
+	const addToCartHandler = (productID) => {
+		dispatch(addToCart(productID));
+	};
+
 	return (
 		<section className={`mt-5 mb-5`}>
 			{product.length === 0 && (
@@ -78,7 +87,10 @@ function ItemDetails() {
 								className={`mb-3 ${styles.productPrice}`}
 							>{`$${product.price}.00`}</h4>
 							<p className={`mb-4`}>{product.description}</p>
-							<Button variant="outline-dark" className={``}>
+							<Button
+								variant="outline-dark"
+								onClick={() => addToCartHandler(product._id)}
+							>
 								ADD TO CART
 							</Button>
 						</Col>

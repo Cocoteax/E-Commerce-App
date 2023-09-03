@@ -1,15 +1,23 @@
 import React from "react";
 import styles from "./ItemActions.module.css";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/cart-slice";
 
 function ItemActions(props) {
-	const handler = (event) => {
+	const dispatch = useDispatch();
+
+	// Dispatch action thunk to add to cart
+	const addToCartHandler = (event) => {
 		event.stopPropagation();
-		console.log(`item ${props.id} clicked from cart`);
+		dispatch(addToCart(props.id));
 	};
 	return (
 		<>
 			<div className={`${styles.actionButton}`}>
-				<i className="fa-solid fa-cart-plus me-2" onClick={handler}></i>
+				<i
+					className="fa-solid fa-cart-plus me-2"
+					onClick={addToCartHandler}
+				></i>
 				<i className="fa-regular fa-heart"></i>
 			</div>
 		</>

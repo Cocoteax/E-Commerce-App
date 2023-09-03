@@ -8,6 +8,7 @@ import MenPage from "./pages/MenPage";
 import WomenPage from "./pages/WomenPage";
 import KidsPage from "./pages/KidsPage";
 import ItemDetailsPage from "./pages/ItemDetailsPage";
+import CartPage from "./pages/CartPage";
 
 const router = createBrowserRouter([
 	{
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
 			{
 				path: "products/:productID",
 				element: <ItemDetailsPage />,
+			},
+			{
+				path: "cart",
+				element: <CartPage />,
 			},
 		],
 		errorElement: <Error />,

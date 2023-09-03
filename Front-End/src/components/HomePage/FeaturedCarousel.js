@@ -38,7 +38,7 @@ function FeaturedCarousel() {
 					<div
 						id="featuredCarousel"
 						className="carousel slide"
-						data-bs-ride="false"
+						data-bs-ride="carousel"
 						data-bs-slide="true"
 					>
 						<div className="carousel-inner">

@@ -1,0 +1,12 @@
+.container {
+    width: 85%;
+}
+
+.cartHeader {
+    font-weight: 700;
+}
+
+.breadcrumb {
+	color: #777777;
+	text-decoration: none;
+}

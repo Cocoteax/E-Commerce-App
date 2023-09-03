@@ -20,14 +20,18 @@ const ProductSchema = new Schema({
 		type: String,
 		required: [true, "Please add a product description"],
 	},
-    imageURL: {
-        type: String,
-        default: "no-photo.jpg"
-    },
-    featured: {
-        type: Boolean,
-        required: [true, "Please state if featured or not (Boolean)"]
-    }
+	imageURL: {
+		type: String,
+		default: "no-photo.jpg",
+	},
+	featured: {
+		type: Boolean,
+		required: [true, "Please state if featured or not (Boolean)"],
+	},
+	createdAt: {
+		type: Date,
+		default: Date.now,
+	},
 });
 
 module.exports = mongoose.model("Product", ProductSchema, "products");

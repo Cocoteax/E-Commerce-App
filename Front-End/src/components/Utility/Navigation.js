@@ -1,5 +1,5 @@
 import styles from "./Navigation.module.css";
-import React, { useEffect } from "react";
+import React from "react";
 import { Navbar, Nav, Container, Offcanvas } from "react-bootstrap";
 import { NavLink, useParams, useLocation } from "react-router-dom";
 
