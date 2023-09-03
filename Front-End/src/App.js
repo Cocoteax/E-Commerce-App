@@ -6,6 +6,7 @@ import Error from "./pages/Error";
 import ShopAllPage from "./pages/ShopAllPage";
 import ItemDetails from "./components/Utility/ItemDetails";
 import MenPage from "./pages/MenPage";
+import WomenPage from "./pages/WomenPage";
 
 const router = createBrowserRouter([
 	{
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
 			{
 				path: "products/men",
 				element: <MenPage />,
+			},
+			{
+				path: "products/women",
+				element: <WomenPage />,
 			},
 			{
 				path: "products/:productID",

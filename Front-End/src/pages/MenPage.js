@@ -6,6 +6,7 @@ import { fetchMenProducts } from "../store/product-slice";
 
 function MenPage() {
 	const dispatch = useDispatch();
+	// Load all products into redux store for the men page
 	useEffect(() => {
 		dispatch(fetchMenProducts());
 	}, [dispatch]);
