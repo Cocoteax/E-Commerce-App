@@ -20,7 +20,7 @@ function ItemDetails() {
 								</Link>
 							</Breadcrumb.Item>
 							<Breadcrumb.Item>
-								<Link to="" className={`${styles.breadcrumb}`}>
+								<Link to=".." relative="path" className={`${styles.breadcrumb}`}>
 									Shop All
 								</Link>
 							</Breadcrumb.Item>

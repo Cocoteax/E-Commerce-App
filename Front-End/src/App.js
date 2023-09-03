@@ -5,6 +5,7 @@ import NavAndFooterLayout from "./pages/NavAndFooterLayout";
 import Error from "./pages/Error";
 import ShopAllPage from "./pages/ShopAllPage";
 import ItemDetails from "./components/Utility/ItemDetails";
+import MenPage from "./pages/MenPage";
 
 const router = createBrowserRouter([
 	{
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
 			{
 				path: "products",
 				element: <ShopAllPage />,
+			},
+			{
+				path: "products/men",
+				element: <MenPage />,
 			},
 			{
 				path: "products/:productID",

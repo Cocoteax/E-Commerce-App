@@ -17,7 +17,7 @@ function Navigation() {
 						aria-controls="basic-navbar-nav"
 						className={`${styles.navbarToggler} me-4`}
 					>
-						<i class="fa-solid fa-bars"></i>
+						<i className="fa-solid fa-bars"></i>
 					</Navbar.Toggle>
 					<Navbar.Offcanvas placement="end">
 						<Offcanvas.Header closeButton>
@@ -47,11 +47,12 @@ function Navigation() {
 											? `${styles.active} mx-3 my-2`
 											: `${styles.navLink} mx-3 my-2`
 									}
+                                    end
 								>
 									<span>SHOP ALL</span>
 								</NavLink>
 								<NavLink
-									to="men"
+									to="products/men"
 									className={({ isActive }) =>
 										isActive
 											? `${styles.active} mx-3 my-2`
@@ -61,7 +62,7 @@ function Navigation() {
 									<span>MEN</span>
 								</NavLink>
 								<NavLink
-									to="women"
+									to="products/women"
 									className={({ isActive }) =>
 										isActive
 											? `${styles.active} mx-3 my-2`

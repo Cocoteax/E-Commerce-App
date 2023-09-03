@@ -1,9 +1,10 @@
-import styles from "./ShopAllItems.module.css";
+import React from "react";
 import Item from "../Utility/Item";
 import { useSelector } from "react-redux";
+import styles from "./MenItems.module.css";
 
-function ShopAllItems() {
-	const items = useSelector((state) => state.productSlice.allProducts);
+function MenItems() {
+	const items = useSelector((state) => state.productSlice.menProducts);
 	return (
 		<section className="mb-5">
 			<div className={`container ${styles.container}`}>
@@ -21,4 +22,4 @@ function ShopAllItems() {
 	);
 }
 
-export default ShopAllItems;
+export default MenItems;

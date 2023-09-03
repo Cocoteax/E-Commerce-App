@@ -4,9 +4,9 @@ import styles from "./FeaturedCarousel.module.css";
 import Item from "../Utility/Item";
 
 function FeaturedCarousel() {
-    // Get access to featured products from redux store
+	// Get access to featured products from redux store
 	const items = useSelector(
-		(state) => state.featuredProductSlice.featuredProducts
+		(state) => state.productSlice.featuredProducts
 	);
 	return (
 		<>

@@ -15,11 +15,16 @@ function Item(props) {
 		setShowActions(false);
 	};
 
+	const handler = () => {
+		console.log(`item ${props.item._id} clicked from card`);
+	};
+
 	return (
 		<Card
 			className={`${styles.card} text-center border-0`}
 			onMouseEnter={showActionsHandler}
 			onMouseLeave={hideActionsHandler}
+            onClick={handler}
 		>
 			<Card.Img
 				src={`${BASE_URL}${props.item.imageURL}`}
@@ -33,7 +38,7 @@ function Item(props) {
 					{props.item.title}
 				</Card.Title>
 				<Card.Text className={`${styles.itemPrice}`}>
-					{props.item.price}
+					{`$${props.item.price}.00`}
 				</Card.Text>
 			</Card.Body>
 			{showActions && <ItemActions id={props.item._id} />}
