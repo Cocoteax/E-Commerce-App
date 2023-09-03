@@ -32,13 +32,15 @@ const productSlice = createSlice({
 		loadSingleProduct(state, action) {
 			state.singleProduct = action.payload.products;
 		},
+		resetSingleProduct(state, action) {
+			state.singleProduct = [];
+		},
 	},
 });
 
 // Use action thunks to make http requests and dispatch redux actions together
 export const fetchFeaturedProducts = () => {
 	return async (dispatch) => {
-		console.log("fetching featured");
 		const response = await axios.get(
 			"http://localhost:5500/api/v1/products/featured"
 		);

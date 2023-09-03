@@ -19,7 +19,6 @@ function Item(props) {
 
     // Navigate to item details page for this specific item
 	const getItemDetailsHandler = () => {
-		console.log(`item ${props.item._id} clicked from card`);
 		navigate(`/products/${props.item._id}`);
 	};
 

@@ -16,9 +16,9 @@ function ItemDetailsPage() {
 		dispatch(fetchProductDetails(params.productID));
 
 		// Clean up function to clear data for items detail page when component unmounts (user navigates away from the page)
-		// return () => {
-		// 	dispatch(productActions.loadSingleProduct({ products: [] }));
-		// };
+		return () => {
+			dispatch(productActions.resetSingleProduct());
+		};
 	}, [dispatch, params]);
 	return <ItemDetails />;
 }
