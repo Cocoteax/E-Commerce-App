@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import BASE_URL from "../components/Utility/BaseURL";
 
 const productSlice = createSlice({
 	name: "products",
@@ -41,9 +42,7 @@ const productSlice = createSlice({
 // Use action thunks to make http requests and dispatch redux actions together
 export const fetchFeaturedProducts = () => {
 	return async (dispatch) => {
-		const response = await axios.get(
-			"http://localhost:5500/api/v1/products/featured"
-		);
+		const response = await axios.get(`${BASE_URL}/api/v1/products/featured`);
 		const products = response.data.data;
 		dispatch(productSlice.actions.loadFeaturedProducts({ products: products }));
 	};
@@ -51,7 +50,7 @@ export const fetchFeaturedProducts = () => {
 
 export const fetchAllProducts = () => {
 	return async (dispatch) => {
-		const response = await axios.get("http://localhost:5500/api/v1/products");
+		const response = await axios.get(`${BASE_URL}/api/v1/products`);
 		const products = response.data.data;
 		dispatch(productSlice.actions.loadAllProducts({ products: products }));
 	};
@@ -59,9 +58,7 @@ export const fetchAllProducts = () => {
 
 export const fetchMenProducts = () => {
 	return async (dispatch) => {
-		const response = await axios.get(
-			"http://localhost:5500/api/v1/products/men"
-		);
+		const response = await axios.get(`${BASE_URL}/api/v1/products/men`);
 		const products = response.data.data;
 		dispatch(productSlice.actions.loadMenProducts({ products: products }));
 	};
@@ -69,9 +66,7 @@ export const fetchMenProducts = () => {
 
 export const fetchWomenProducts = () => {
 	return async (dispatch) => {
-		const response = await axios.get(
-			"http://localhost:5500/api/v1/products/women"
-		);
+		const response = await axios.get(`${BASE_URL}/api/v1/products/women`);
 		const products = response.data.data;
 		dispatch(productSlice.actions.loadWomenProducts({ products: products }));
 	};
@@ -79,9 +74,7 @@ export const fetchWomenProducts = () => {
 
 export const fetchKidsProducts = () => {
 	return async (dispatch) => {
-		const response = await axios.get(
-			"http://localhost:5500/api/v1/products/kids"
-		);
+		const response = await axios.get(`${BASE_URL}/api/v1/products/kids`);
 		const products = response.data.data;
 		dispatch(productSlice.actions.loadKidsProducts({ products: products }));
 	};
@@ -90,7 +83,7 @@ export const fetchKidsProducts = () => {
 export const fetchProductDetails = (productID) => {
 	return async (dispatch) => {
 		const response = await axios.get(
-			`http://localhost:5500/api/v1/products/${productID}`
+			`${BASE_URL}/api/v1/products/${productID}`
 		);
 		const products = response.data.data;
 		dispatch(productSlice.actions.loadSingleProduct({ products: products }));

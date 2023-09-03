@@ -15,10 +15,10 @@ function ItemActions(props) {
 		<>
 			<div className={`${styles.actionButton}`}>
 				<i
-					className="fa-solid fa-cart-plus me-2"
+					className={`fa-solid fa-cart-plus me-2 ${styles.actionIcon}`}
 					onClick={addToCartHandler}
 				></i>
-				<i className="fa-regular fa-heart"></i>
+				<i className={`fa-regular fa-heart ${styles.actionIcon}`}></i>
 			</div>
 		</>
 	);

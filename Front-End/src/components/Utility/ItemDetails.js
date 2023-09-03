@@ -4,11 +4,11 @@ import styles from "./ItemDetails.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../../store/cart-slice";
+import BASE_URL from "../Utility/BaseURL";
 
 function ItemDetails() {
 	const dispatch = useDispatch();
 
-	const BASE_URL = "http://localhost:5500/images/";
 	// Fetch item details to be displayed from redux store
 	const product = useSelector((state) => state.productSlice.singleProduct);
 
@@ -52,7 +52,7 @@ function ItemDetails() {
 					<Row className={`gy-4`}>
 						<Col md={6} className={`d-flex justify-content-center`}>
 							<img
-								src={`${BASE_URL}${product.imageURL}`}
+								src={`${BASE_URL}/images/${product.imageURL}`}
 								className={`${styles.itemImage}`}
 								alt="item"
 							></img>
