@@ -14,7 +14,7 @@
 > Back-end developed using ExpressJS and MongoDB (REST API) <br/>
 
 ## Usage
-> The application is deployed with github pages [here](https://e-commerce-app-react-frontend.vercel.app/).
+> The application is deployed with vercel [here](https://e-commerce-app-react-frontend.vercel.app/).
 
 ## Local Installation and Setup Instructions
 **Step 1:** Clone this repository <br/>
