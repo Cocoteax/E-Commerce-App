@@ -10,6 +10,7 @@ const productSlice = createSlice({
 		womenProducts: [],
 		menProducts: [],
 		kidsProducts: [],
+		singleProduct: [],
 	},
 	reducers: {
 		loadFeaturedProducts(state, action) {
@@ -27,6 +28,9 @@ const productSlice = createSlice({
 		},
 		loadKidsProducts(state, action) {
 			state.kidsProducts = action.payload.products;
+		},
+		loadSingleProduct(state, action) {
+			state.singleProduct = action.payload.products;
 		},
 	},
 });
@@ -78,6 +82,16 @@ export const fetchKidsProducts = () => {
 		);
 		const products = response.data.data;
 		dispatch(productSlice.actions.loadKidsProducts({ products: products }));
+	};
+};
+
+export const fetchProductDetails = (productID) => {
+	return async (dispatch) => {
+		const response = await axios.get(
+			`http://localhost:5500/api/v1/products/${productID}`
+		);
+		const products = response.data.data;
+		dispatch(productSlice.actions.loadSingleProduct({ products: products }));
 	};
 };
 

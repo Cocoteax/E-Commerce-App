@@ -101,10 +101,26 @@ const getKidsProducts = async (req, res, next) => {
 	}
 };
 
+// @desc    Get all products for kids page
+// @route   GET /api/v1/products/women
+// @access  PUBLIC
+const getSingleProduct = async (req, res, next) => {
+	try {
+		const product = await Product.findById(req.params.productID);
+		res.status(200).json({
+			success: true,
+			data: product,
+		});
+	} catch (e) {
+		next(e);
+	}
+};
+
 module.exports = {
 	getFeaturedProducts,
 	getAllProducts,
 	getWomenProducts,
 	getMenProducts,
 	getKidsProducts,
+    getSingleProduct
 };

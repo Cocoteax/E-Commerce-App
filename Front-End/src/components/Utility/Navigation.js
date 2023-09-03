@@ -1,9 +1,13 @@
 import styles from "./Navigation.module.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar, Nav, Container, Offcanvas } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams, useLocation } from "react-router-dom";
 
 function Navigation() {
+	// When accessing items details page, SHOP ALL will be the active link
+	const params = useParams();
+	const url = useLocation().pathname;
+	const itemDetailsPage = url.includes(params.productID);
 	return (
 		<>
 			<Navbar expand="lg" className="mt-2 mb-3">
@@ -43,11 +47,11 @@ function Navigation() {
 								<NavLink
 									to="products"
 									className={({ isActive }) =>
-										isActive
+										isActive || itemDetailsPage
 											? `${styles.active} mx-3 my-2`
 											: `${styles.navLink} mx-3 my-2`
 									}
-                                    end
+									end
 								>
 									<span>SHOP ALL</span>
 								</NavLink>
@@ -81,7 +85,7 @@ function Navigation() {
 								>
 									<span>KIDS</span>
 								</NavLink>
-								<NavLink
+								{/* <NavLink
 									to="blog"
 									className={({ isActive }) =>
 										isActive
@@ -90,7 +94,7 @@ function Navigation() {
 									}
 								>
 									<span>BLOG</span>
-								</NavLink>
+								</NavLink> */}
 								<NavLink
 									to="contact"
 									className={({ isActive }) =>

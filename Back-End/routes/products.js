@@ -17,4 +17,7 @@ router.route("/men").get(productController.getMenProducts);
 // /api/v1/products/kids
 router.route("/kids").get(productController.getKidsProducts);
 
+// /api/v1/products/:productID
+router.route("/:productID").get(productController.getSingleProduct);
+
 module.exports = router;

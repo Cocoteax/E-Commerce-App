@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import styles from "./Item.module.css";
 import { Card } from "react-bootstrap";
 import ItemActions from "./ItemActions";
+import { useNavigate } from "react-router-dom";
 
 function Item(props) {
 	const BASE_URL = "http://localhost:5500/images/";
 	const [showActions, setShowActions] = useState(false);
+	const navigate = useNavigate();
 
 	const showActionsHandler = () => {
 		setShowActions(true);
@@ -15,8 +17,10 @@ function Item(props) {
 		setShowActions(false);
 	};
 
-	const handler = () => {
+    // Navigate to item details page for this specific item
+	const getItemDetailsHandler = () => {
 		console.log(`item ${props.item._id} clicked from card`);
+		navigate(`/products/${props.item._id}`);
 	};
 
 	return (
@@ -24,7 +28,7 @@ function Item(props) {
 			className={`${styles.card} text-center border-0`}
 			onMouseEnter={showActionsHandler}
 			onMouseLeave={hideActionsHandler}
-            onClick={handler}
+			onClick={getItemDetailsHandler}
 		>
 			<Card.Img
 				src={`${BASE_URL}${props.item.imageURL}`}

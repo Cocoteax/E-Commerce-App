@@ -1,16 +1,23 @@
 import React from "react";
 import { Col, Container, Row, Breadcrumb, Button } from "react-bootstrap";
-import maleFashion1 from "../../assets/male-fashion-1.avif"
 import styles from "./ItemDetails.module.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function ItemDetails() {
+	const BASE_URL = "http://localhost:5500/images/";
+	// Fetch item details to be displayed from redux store
+	const product = useSelector((state) => state.productSlice.singleProduct);
 	return (
 		<section className={`mt-5 mb-5`}>
 			<Container fluid className={`${styles.container}`}>
 				<Row className={`gy-4`}>
 					<Col md={6} className={`d-flex justify-content-center`}>
-						<img src={maleFashion1} className={`${styles.itemImage}`} alt="item"></img>
+						<img
+							src={`${BASE_URL}${product.imageURL}`}
+							className={`${styles.itemImage}`}
+							alt="item"
+						></img>
 					</Col>
 					<Col md={6}>
 						<Breadcrumb>
@@ -20,32 +27,31 @@ function ItemDetails() {
 								</Link>
 							</Breadcrumb.Item>
 							<Breadcrumb.Item>
-								<Link to=".." relative="path" className={`${styles.breadcrumb}`}>
+								<Link
+									to=".."
+									relative="path"
+									className={`${styles.breadcrumb}`}
+								>
 									Shop All
 								</Link>
 							</Breadcrumb.Item>
 							<Breadcrumb.Item>
-								<Link to="" active className={`${styles.breadcrumb}`}>
-									Product Name
+								<Link to="" active="true" className={`${styles.breadcrumb}`}>
+									{product.title}
 								</Link>
 							</Breadcrumb.Item>
 						</Breadcrumb>
-						<h5 className={`mb-3 ${styles.productCategory}`}>Product Category</h5>
-						<h3 className={`mb-3 ${styles.productName}`}>Product Name</h3>
-						<h4 className={`mb-3 ${styles.productPrice}`}>$75.00</h4>
-						<p className={`mb-4`}>
-							product description lorem Ut quis sollicitudin orci. Aliquam at
-							libero non purus sodales sagittis eu ac neque. Nunc ipsum felis,
-							vehicula eu aliquam sed, ultricies ac lacus. Vestibulum ante ipsum
-							primis in faucibus orci luctus et ultrices posuere cubilia curae;
-							Nam viverra commodo finibus. Morbi laoreet lacus quis lobortis
-							tempor. Nam tincidunt, lectus a suscipit fringilla, mauris turpis
-							dapibus dolor, eu venenatis diam nibh id massa. Nulla eget tortor
-							ultrices, ultricies turpis a, accumsan turpis. Quisque dignissim
-							semper leo ac accumsan. Quisque est nisl, bibendum ut elit quis,
-							pellentesque vehicula tellus. Sed luctus mattis ante ac posuere.
-						</p>
-                        <Button variant="outline-dark" className={``}>ADD TO CART</Button>
+						<h5 className={`mb-3 ${styles.productCategory}`}>
+							{product.category}
+						</h5>
+						<h3 className={`mb-3 ${styles.productName}`}>{product.title}</h3>
+						<h4
+							className={`mb-3 ${styles.productPrice}`}
+						>{`$${product.price}.00`}</h4>
+						<p className={`mb-4`}>{product.description}</p>
+						<Button variant="outline-dark" className={``}>
+							ADD TO CART
+						</Button>
 					</Col>
 				</Row>
 			</Container>

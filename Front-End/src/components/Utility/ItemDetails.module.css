@@ -5,7 +5,7 @@
 .itemImage {
 	height: 40rem;
 	width: 35rem;
-	object-fit: cover;
+	object-fit: contain;
 }
 
 .breadcrumb {
