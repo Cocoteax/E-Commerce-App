@@ -8,7 +8,7 @@ function CartItems(props) {
 	// Handle the adding/removing from cut using redux reducers
 	// NOTE: By using redux reducers and not sending a POST/DELETE request straight away, we can focus on responsiveness because request will be sent after ui changes
 	const addToCartHandler = () => {
-		dispatch(cartActions.addToCartReducer({ cartItem: props.cartItem }));
+		dispatch(cartActions.addToCartReducer({ newProduct: props.cartItem.product })); // Pass in the product to be added
 	};
 	const removeFromCartHandler = () => {
 		dispatch(

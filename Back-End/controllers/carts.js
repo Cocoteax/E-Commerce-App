@@ -20,7 +20,7 @@ const getCart = async (req, res, next) => {
 	}
 };
 
-// @desc    Add product to cart
+// @desc    Add product to cart (For Testing Purposes)
 // @route   POST /api/v1/cart/:productID
 // @access  PRIVATE
 const postCart = async (req, res, next) => {
@@ -68,7 +68,7 @@ const postCart = async (req, res, next) => {
 	}
 };
 
-// @desc    Remove product from cart
+// @desc    Remove product from cart (For Testing Purposes)
 // @route   DELETE /api/v1/cart/:productID
 // @access  PRIVATE
 const deleteFromCart = async (req, res, next) => {

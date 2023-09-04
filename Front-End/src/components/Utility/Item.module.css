@@ -12,6 +12,12 @@
 	position: relative;
 }
 
+.itemImage:hover {
+	cursor: pointer;
+	transform: scale(1.03);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
 .itemCategory {
 	color: rgba(0, 0, 0, 0.6);
 	font-size: 0.9rem;
@@ -30,7 +36,7 @@
 }
 
 @media (max-width: 991px) {
-	.itemTitle{
+	.itemTitle {
 		font-size: 16px;
 	}
 	.itemCategory {

@@ -44,7 +44,7 @@ function Item(props) {
 					{`$${props.item.price}.00`}
 				</Card.Text>
 			</Card.Body>
-			{showActions && <ItemActions id={props.item._id} />}
+			{showActions && <ItemActions item={props.item} />}
 		</Card>
 	);
 }

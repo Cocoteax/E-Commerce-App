@@ -96,14 +96,14 @@ function Navigation() {
 									<span>BLOG</span>
 								</NavLink> */}
 								<NavLink
-									to="contact"
+									to="orders"
 									className={({ isActive }) =>
 										isActive
 											? `${styles.active} mx-3 my-2`
 											: `${styles.navLink} mx-3 my-2`
 									}
 								>
-									<span>CONTACT</span>
+									<span>ORDERS</span>
 								</NavLink>
 							</Nav>
 

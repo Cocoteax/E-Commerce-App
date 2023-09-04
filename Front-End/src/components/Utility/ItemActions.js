@@ -1,15 +1,15 @@
 import React from "react";
 import styles from "./ItemActions.module.css";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../../store/cart-slice";
+import { cartActions } from "../../store/cart-slice";
 
 function ItemActions(props) {
 	const dispatch = useDispatch();
 
-	// Dispatch action thunk to add to cart
+    // Add to cart using our redux reducer
 	const addToCartHandler = (event) => {
 		event.stopPropagation();
-		dispatch(addToCart(props.id));
+		dispatch(cartActions.addToCartReducer({ newProduct: props.item }));
 	};
 	return (
 		<>

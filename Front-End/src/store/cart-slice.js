@@ -15,43 +15,44 @@ const cartSlice = createSlice({
 			state.fetchedCart = true;
 			console.log(state.cart);
 		},
-		// Redux reducer for cart updates ONLY IN CART PAGE. (Focus on responsiveness by updating the cart state, then triggering PUT request)
+		// Redux reducer for adding product to cart (Focus on responsiveness by updating the cart state, then triggering PUT request)
 		addToCartReducer(state, action) {
-			const newProduct = action.payload.cartItem;
+			const newProduct = action.payload.newProduct;
+			console.log("New Product");
+			console.log(newProduct);
 			// Check if product exists in cart
 			const existingIndex = state.cart.cartItems.findIndex(
 				(cartItem) =>
-					cartItem.product._id.toString() === newProduct.product._id.toString()
+					cartItem.product._id.toString() === newProduct._id.toString()
 			);
 
 			// Existing cart item
 			if (existingIndex > -1) {
 				// Update quantity, subtotal, total quantity and total price
 				state.cart.cartItems[existingIndex].quantity += 1;
-				state.cart.cartItems[existingIndex].subtotal +=
-					newProduct.product.price;
+				state.cart.cartItems[existingIndex].subtotal += newProduct.price;
 				state.cart.totalQuantity += 1;
-				state.cart.totalPrice += newProduct.product.price;
+				state.cart.totalPrice += newProduct.price;
 			}
 			// New cart item
 			else {
 				state.cart.cartItems.push({
 					product: {
-						_id: newProduct.product._id,
-						category: newProduct.product.category,
-						price: newProduct.product.price,
-						title: newProduct.product.title,
+						_id: newProduct._id,
+						category: newProduct.category,
+						price: newProduct.price,
+						title: newProduct.title,
 					},
-					quantity: newProduct.quantity,
-					subtotal: newProduct.subtotal,
+					quantity: 1,
+					subtotal: newProduct.price,
 				});
 				// Update total quantity and total price
 				state.cart.totalQuantity += 1;
-				state.cart.totalPrice += newProduct.product.price;
+				state.cart.totalPrice += newProduct.price;
 			}
 			state.cartChanged = true;
 		},
-		// Redux reducer for cart updates ONLY IN CART PAGE. (Focus on responsiveness by updating the cart state, then triggering PUT request)
+		// Redux reducer for removing products from cart (Focus on responsiveness by updating the cart state, then triggering PUT request)
 		removeFromCartReducer(state, action) {
 			const productID = action.payload.productID;
 
@@ -91,35 +92,11 @@ export const fetchCart = () => {
 	};
 };
 
-// PUT request that triggers whenever we change the cart state ONLY IN THE CART PAGE (For responsiveness). 
-// NOTE: This request executes because of the useEffect() we set up in CartPage that triggers whenever cart state changes
+// Action thunk with PUT request that triggers whenever we change the cart state using our redux reducers
+// NOTE: This thunk executes whenever our cart changes state because of the useEffect() that we set up in CartPage which triggers whenever cart state changes
 export const updateCart = (cart) => {
 	return async (dispatch) => {
 		await axios.put(`${BASE_URL}/api/v1/carts`, { cart });
-	};
-};
-
-// POST request for adding items to the cart from OUTSIDE the cart page
-export const addToCart = (productID) => {
-	return async (dispatch) => {
-		await axios.post(`${BASE_URL}/api/v1/carts/${productID}`);
-		const response = await axios.get(`${BASE_URL}/api/v1/carts`);
-		const cartItems = response.data.data;
-		dispatch(cartSlice.actions.loadCart({ cartItems: cartItems }));
-	};
-};
-
-// Can remove for refractoring
-export const removeFromCart = (productID) => {
-	return async (dispatch) => {
-		try {
-			await axios.delete(`${BASE_URL}/api/v1/carts/${productID}`);
-			const response = await axios.get(`${BASE_URL}/api/v1/carts`);
-			const cartItems = response.data.data;
-			dispatch(cartSlice.actions.loadCart({ cartItems: cartItems }));
-		} catch (e) {
-			console.log(e);
-		}
 	};
 };
 

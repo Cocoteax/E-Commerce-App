@@ -3,7 +3,7 @@ import { Col, Container, Row, Breadcrumb, Button } from "react-bootstrap";
 import styles from "./ItemDetails.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart } from "../../store/cart-slice";
+import { cartActions } from "../../store/cart-slice";
 import BASE_URL from "../Utility/BaseURL";
 
 function ItemDetails() {
@@ -13,8 +13,8 @@ function ItemDetails() {
 	const product = useSelector((state) => state.productSlice.singleProduct);
 
 	// Dispatch action thunk to add to cart
-	const addToCartHandler = (productID) => {
-		dispatch(addToCart(productID));
+	const addToCartHandler = (product) => {
+		dispatch(cartActions.addToCartReducer({ newProduct: product }));
 	};
 
 	return (
@@ -89,7 +89,7 @@ function ItemDetails() {
 							<p className={`mb-4`}>{product.description}</p>
 							<Button
 								variant="outline-dark"
-								onClick={() => addToCartHandler(product._id)}
+								onClick={() => addToCartHandler(product)}
 							>
 								ADD TO CART
 							</Button>
