@@ -3,7 +3,7 @@ const router = express.Router();
 const cartController = require("../controllers/carts");
 
 // /api/v1/cart
-router.route("/").get(cartController.getCart);
+router.route("/").get(cartController.getCart).put(cartController.updateCart);
 
 // /api/v1/cart/:productID
 router

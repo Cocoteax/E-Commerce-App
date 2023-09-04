@@ -1,21 +1,28 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addToCart, removeFromCart } from "../../store/cart-slice";
+import { cartActions } from "../../store/cart-slice";
 
 function CartItems(props) {
 	const dispatch = useDispatch();
+
+	// Handle the adding/removing from cut using redux reducers
+	// NOTE: By using redux reducers and not sending a POST/DELETE request straight away, we can focus on responsiveness because request will be sent after ui changes
 	const addToCartHandler = () => {
-		dispatch(addToCart(props.item._id));
+		dispatch(cartActions.addToCartReducer({ cartItem: props.cartItem }));
 	};
 	const removeFromCartHandler = () => {
-		dispatch(removeFromCart(props.item._id));
+		dispatch(
+			cartActions.removeFromCartReducer({
+				productID: props.cartItem.product._id,
+			})
+		);
 	};
 	return (
 		<tr>
 			<th scope="row">{props.index + 1}</th>
-			<td>{props.item.productID.title}</td>
-			<td>{props.item.productID.category}</td>
-			<td>{props.item.productID.price}</td>
+			<td>{props.cartItem.product.title}</td>
+			<td>{props.cartItem.product.category}</td>
+			<td>{props.cartItem.product.price}</td>
 			<td>
 				<div className="btn-group" role="group">
 					<button
@@ -26,7 +33,7 @@ function CartItems(props) {
 						<i className="fa-solid fa-minus"></i>
 					</button>
 					<button type="button" className="btn btn-outline-dark btn-sm px-3">
-						{props.item.quantity}
+						{props.cartItem.quantity}
 					</button>
 					<button
 						type="button"
@@ -37,7 +44,7 @@ function CartItems(props) {
 					</button>
 				</div>
 			</td>
-			<td>${props.item.subtotal}.00</td>
+			<td>${props.cartItem.subtotal}.00</td>
 		</tr>
 	);
 }

@@ -11,7 +11,9 @@ function CartSection() {
 			<Container className={``}>
 				<Row className={`justify-content-center`}>
 					<Col className={``}>
-						<table className={`table table-bordered table-hover align-middle`}>
+						<table
+							className={`table table-bordered table-hover align-middle table-responsive`}
+						>
 							<thead>
 								<tr>
 									<th scope="col">#</th>
@@ -24,9 +26,13 @@ function CartSection() {
 							</thead>
 							<tbody>
 								{cart.length !== 0 &&
-									cart.items.map((item, index) => {
+									cart.cartItems.map((cartItem, index) => {
 										return (
-											<CartItems key={item._id} item={item} index={index} />
+											<CartItems
+												key={cartItem.product._id}
+												cartItem={cartItem}
+												index={index}
+											/>
 										);
 									})}
 							</tbody>

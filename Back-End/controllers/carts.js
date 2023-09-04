@@ -8,7 +8,7 @@ const getCart = async (req, res, next) => {
 	try {
 		// Use .populate() to populate the products in the cart
 		const cart = await Cart.findOne().populate({
-			path: "items.productID",
+			path: "cartItems.product",
 			select: "title category price",
 		});
 		res.status(200).json({
@@ -35,21 +35,21 @@ const postCart = async (req, res, next) => {
 		let existingItemIndex = -1;
 
 		// Check if item exists in cart
-		existingItemIndex = cart.items.findIndex(
-			(item) => item.productID.toString() === productID.toString()
+		existingItemIndex = cart.cartItems.findIndex(
+			(item) => item.product.toString() === productID.toString()
 		);
 
 		// item exists, update cart
 		if (existingItemIndex > -1) {
-			cart.items[existingItemIndex].quantity += 1;
-			cart.items[existingItemIndex].subtotal += product.price;
+			cart.cartItems[existingItemIndex].quantity += 1;
+			cart.cartItems[existingItemIndex].subtotal += product.price;
 			cart.totalQuantity += 1;
 			cart.totalPrice += product.price;
 		}
 		// new item, create new cart product
 		else {
-			cart.items.push({
-				productID: productID,
+			cart.cartItems.push({
+				product: productID,
 				quantity: 1,
 				subtotal: product.price,
 				_id: productID,
@@ -84,30 +84,30 @@ const deleteFromCart = async (req, res, next) => {
 		let existingItemIndex = -1;
 
 		// Check if item exists in cart
-		existingItemIndex = cart.items.findIndex(
-			(item) => item.productID.toString() === productID.toString()
+		existingItemIndex = cart.cartItems.findIndex(
+			(item) => item.product.toString() === productID.toString()
 		);
 
 		// Item exists, check for quantity
 		if (existingItemIndex > -1) {
 			// Only 1 quantity in cart, remove completely
-			if (cart.items[existingItemIndex].quantity === 1) {
+			if (cart.cartItems[existingItemIndex].quantity === 1) {
 				// Update properties of cart
-				cart.items[existingItemIndex].quantity -= 1;
-				cart.items[existingItemIndex].subtotal -= product.price;
+				cart.cartItems[existingItemIndex].quantity -= 1;
+				cart.cartItems[existingItemIndex].subtotal -= product.price;
 				cart.totalQuantity -= 1;
 				cart.totalPrice -= product.price;
 
 				// Remove from cart completely
-				cart.items = cart.items.filter(
-					(item) => item.productID.toString() !== productID
+				cart.cartItems = cart.cartItems.filter(
+					(item) => item.product.toString() !== productID
 				);
-				console.log(cart.items);
+				console.log(cart.cartItems);
 			}
 			// More than 1 quantity, just reduce by 1
 			else {
-				cart.items[existingItemIndex].quantity -= 1;
-				cart.items[existingItemIndex].subtotal -= product.price;
+				cart.cartItems[existingItemIndex].quantity -= 1;
+				cart.cartItems[existingItemIndex].subtotal -= product.price;
 				cart.totalQuantity -= 1;
 				cart.totalPrice -= product.price;
 			}
@@ -129,8 +129,33 @@ const deleteFromCart = async (req, res, next) => {
 	}
 };
 
+// @desc    Update entire cart
+// @route   PUT /api/v1/cart
+// @access  PRIVATE
+const updateCart = async (req, res, next) => {
+	try {
+		const product = req.body.cart;
+
+		// Update current cart
+		// findByIdAndUpdate accepts 4 parameters: filter, update, options, callback
+		const cart = await Cart.findByIdAndUpdate(
+			"64f42c212be8c8af6cd32c39",
+			{ $set: product },
+			{ new: true, runValidators: true }
+		);
+
+		res.status(200).json({
+			success: true,
+			data: cart,
+		});
+	} catch (e) {
+		next(e);
+	}
+};
+
 module.exports = {
 	getCart,
 	postCart,
 	deleteFromCart,
+	updateCart,
 };
