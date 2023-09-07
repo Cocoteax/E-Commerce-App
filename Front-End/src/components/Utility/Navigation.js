@@ -2,8 +2,14 @@ import styles from "./Navigation.module.css";
 import React from "react";
 import { Navbar, Nav, Container, Offcanvas } from "react-bootstrap";
 import { NavLink, useParams, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Navigation() {
+	// Get access to cart total quantity redux state
+	const cartTotalQty = useSelector(
+		(state) => state.cartSlice.cart.totalQuantity
+	);
+
 	// When accessing items details page, SHOP ALL will be the active link
 	const params = useParams();
 	const url = useLocation().pathname;
@@ -130,7 +136,7 @@ function Navigation() {
 										className={`${styles.icon} ${styles.searchIcon}`}
 									>
 										<i
-											value={"12"}
+											value={cartTotalQty}
 											className={`fa-solid fa-cart-shopping ${styles.cart}`}
 										></i>
 									</NavLink>

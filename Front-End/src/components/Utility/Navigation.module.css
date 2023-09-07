@@ -44,7 +44,7 @@
 	text-underline-offset: 0.8rem;
 }
 
-/* .cart:after {
+.cart:after {
   content: attr(value);
   font-size: 10px;
   color: #fff;
@@ -55,7 +55,7 @@
   left: -6px;
   top: -10px;
   opacity: 0.9;
-} */
+}
 
 @media (max-width: 991px) {
 	/* Remove search icon from toggled navbar */
