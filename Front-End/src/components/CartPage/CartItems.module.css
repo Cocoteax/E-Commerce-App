@@ -1,0 +1,7 @@
+.productTitle {
+	color: #212529;
+}
+
+.productTitle:hover {
+    text-decoration: underline !important;
+}

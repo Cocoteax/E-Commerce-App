@@ -4,6 +4,7 @@ import styles from "./ItemDetails.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
+import Loader from "./Loader";
 import BASE_URL from "../Utility/BaseURL";
 
 function ItemDetails() {
@@ -19,34 +20,7 @@ function ItemDetails() {
 
 	return (
 		<section className={`mt-5 mb-5`}>
-			{product.length === 0 && (
-				<div className="d-flex justify-content-center">
-					<div className="spinner-grow text-primary" role="status">
-						<span className="visually-hidden">Loading...</span>
-					</div>
-					<div className="spinner-grow text-secondary" role="status">
-						<span className="visually-hidden">Loading...</span>
-					</div>
-					<div className="spinner-grow text-success" role="status">
-						<span className="visually-hidden">Loading...</span>
-					</div>
-					<div className="spinner-grow text-danger" role="status">
-						<span className="visually-hidden">Loading...</span>
-					</div>
-					<div className="spinner-grow text-warning" role="status">
-						<span className="visually-hidden">Loading...</span>
-					</div>
-					<div className="spinner-grow text-info" role="status">
-						<span className="visually-hidden">Loading...</span>
-					</div>
-					<div className="spinner-grow text-light" role="status">
-						<span className="visually-hidden">Loading...</span>
-					</div>
-					<div className="spinner-grow text-dark" role="status">
-						<span className="visually-hidden">Loading...</span>
-					</div>
-				</div>
-			)}
+			{product.length === 0 && <Loader />}
 			{product.length !== 0 && (
 				<Container fluid className={`${styles.container}`}>
 					<Row className={`gy-4`}>

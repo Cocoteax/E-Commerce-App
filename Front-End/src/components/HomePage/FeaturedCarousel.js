@@ -2,12 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./FeaturedCarousel.module.css";
 import Item from "../Utility/Item";
+import Loader from "../Utility/Loader";
 
 function FeaturedCarousel() {
 	// Get access to featured products from redux store
-	const items = useSelector(
-		(state) => state.productSlice.featuredProducts
-	);
+	const items = useSelector((state) => state.productSlice.featuredProducts);
 	return (
 		<>
 			<div className={`container-fluid ${styles.container}`}>
@@ -43,7 +42,8 @@ function FeaturedCarousel() {
 					>
 						<div className="carousel-inner">
 							{/* use .map() to create each carousel slide */}
-							{items.map((item, index) => {
+							{items.length === 0 && <Loader />}
+							{items.length !==0 && items.map((item, index) => {
 								return (
 									<>
 										{index === 0 && (
