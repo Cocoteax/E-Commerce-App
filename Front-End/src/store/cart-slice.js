@@ -18,8 +18,6 @@ const cartSlice = createSlice({
 		// Redux reducer for adding product to cart (Focus on responsiveness by updating the cart state, then triggering PUT request)
 		addToCartReducer(state, action) {
 			const newProduct = action.payload.newProduct;
-			console.log("New Product");
-			console.log(newProduct);
 			// Check if product exists in cart
 			const existingIndex = state.cart.cartItems.findIndex(
 				(cartItem) =>
@@ -86,6 +84,7 @@ const cartSlice = createSlice({
 
 export const fetchCart = () => {
 	return async (dispatch) => {
+        console.log("fetching cart")
 		const response = await axios.get(`${BASE_URL}/api/v1/carts`);
 		const cartItems = response.data.data;
 		dispatch(cartSlice.actions.loadCart({ cartItems: cartItems }));

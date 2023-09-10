@@ -31,12 +31,21 @@ const getFeaturedProducts = async (req, res, next) => {
 	}
 };
 
-// @desc    Get all products for shop all page
+// @desc    Get all products for shop all page (w/ query params for sorting)
 // @route   GET /api/v1/products
 // @access  PUBLIC
 const getAllProducts = async (req, res, next) => {
 	try {
-		const products = await Product.find().select("-description");
+		// NOTE: query is just a promise that hasn't been executed yet => This allows us to chain on other methods if needed before executing query
+		let query = Product.find().select("-description");
+
+		// Only chain .sort() if there is a sort query
+		if (req.query.sort) {
+			query.sort(req.query.sort);
+		}
+
+		// Execute query
+		const products = await query;
 		res.status(200).json({
 			success: true,
 			count: products.length,
@@ -47,14 +56,19 @@ const getAllProducts = async (req, res, next) => {
 	}
 };
 
-// @desc    Get all products for women page
+// @desc    Get all products for women page (w/ query params for sorting)
 // @route   GET /api/v1/products/women
 // @access  PUBLIC
 const getWomenProducts = async (req, res, next) => {
 	try {
-		const products = await Product.find({ category: "Women" }).select(
-			"-description"
-		);
+		let query = Product.find({ category: "Women" }).select("-description");
+
+		// Only chain .sort() if there is a sort query
+		if (req.query.sort) {
+			query.sort(req.query.sort);
+		}
+		const products = await query;
+
 		res.status(200).json({
 			success: true,
 			count: products.length,
@@ -65,14 +79,18 @@ const getWomenProducts = async (req, res, next) => {
 	}
 };
 
-// @desc    Get all products for men page
+// @desc    Get all products for men page (w/ query params for sorting)
 // @route   GET /api/v1/products/women
 // @access  PUBLIC
 const getMenProducts = async (req, res, next) => {
 	try {
-		const products = await Product.find({ category: "Men" }).select(
-			"-description"
-		);
+		let query = Product.find({ category: "Men" }).select("-description");
+
+		// Only chain .sort() if there is a sort query
+		if (req.query.sort) {
+			query.sort(req.query.sort);
+		}
+		const products = await query;
 		res.status(200).json({
 			success: true,
 			count: products.length,
@@ -88,9 +106,13 @@ const getMenProducts = async (req, res, next) => {
 // @access  PUBLIC
 const getKidsProducts = async (req, res, next) => {
 	try {
-		const products = await Product.find({ category: "Kids" }).select(
-			"-description"
-		);
+		let query = Product.find({ category: "Kids" }).select("-description");
+
+		// Only chain .sort() if there is a sort query
+		if (req.query.sort) {
+			query.sort(req.query.sort);
+		}
+		const products = await query;
 		res.status(200).json({
 			success: true,
 			count: products.length,
@@ -122,5 +144,5 @@ module.exports = {
 	getWomenProducts,
 	getMenProducts,
 	getKidsProducts,
-    getSingleProduct
+	getSingleProduct,
 };

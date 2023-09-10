@@ -9,8 +9,59 @@ import {
 } from "react-bootstrap";
 import styles from "./ShopAllHeader.module.css";
 import { Link } from "react-router-dom";
+import { fetchAllProducts } from "../../store/product-slice";
+import { useDispatch, useSelector } from "react-redux";
+import { productActions } from "../../store/product-slice";
 
 function ShopAllHeader() {
+	const dispatch = useDispatch();
+
+	// Use redux filterTitle state to maintain the dropdown title
+	const filterTitle = useSelector(
+		(state) => state.productSlice.allProductsFilter
+	);
+
+	// handler for when sorting is clicked
+	const sortingHandler = (sortBy) => {
+		// Switch statement to handle updating of dropdown title
+		switch (sortBy) {
+			case "title":
+				dispatch(
+					productActions.changeAllProductsFilter({
+						filter: "Sort By Name: A to Z",
+					})
+				);
+				break;
+			case "price":
+				dispatch(
+					productActions.changeAllProductsFilter({
+						filter: "Sort By Price: Low to High",
+					})
+				);
+				break;
+			case "-price":
+				dispatch(
+					productActions.changeAllProductsFilter({
+						filter: "Sort By Price: High to Low",
+					})
+				);
+				break;
+			case "category":
+				dispatch(
+					productActions.changeAllProductsFilter({
+						filter: "Sort By Category",
+					})
+				);
+				break;
+			default:
+				dispatch(
+					productActions.changeAllProductsFilter({ filter: "Default Sorting" })
+				);
+		}
+
+		// Dispatch action thunk to fetch sorted products
+		dispatch(fetchAllProducts(sortBy));
+	};
 	return (
 		<section className="mt-5 mb-5">
 			<Container fluid className={`${styles.container}`}>
@@ -38,11 +89,19 @@ function ShopAllHeader() {
 						</p>
 					</Col>
 					<Col className={`text-end`}>
-						<DropdownButton title="Default Sorting" variant="outline-secondary">
-							<Dropdown.Item>Sort by popularity</Dropdown.Item>
-							<Dropdown.Item>Sort by average rating</Dropdown.Item>
-							<Dropdown.Item>Sort by price: low to high</Dropdown.Item>
-							<Dropdown.Item>Sort by price: high to low</Dropdown.Item>
+						<DropdownButton title={filterTitle} variant="outline-secondary">
+							<Dropdown.Item onClick={() => sortingHandler("title")}>
+								Sort By Name: A to Z
+							</Dropdown.Item>
+							<Dropdown.Item onClick={() => sortingHandler("price")}>
+								Sort By Price: Low to High
+							</Dropdown.Item>
+							<Dropdown.Item onClick={() => sortingHandler("-price")}>
+								Sort By Price: High to Low
+							</Dropdown.Item>
+							<Dropdown.Item onClick={() => sortingHandler("category")}>
+								Sort By Category
+							</Dropdown.Item>
 						</DropdownButton>
 					</Col>
 				</Row>

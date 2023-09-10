@@ -6,10 +6,13 @@ import Loader from "../Utility/Loader";
 
 function KidsItem() {
 	const items = useSelector((state) => state.productSlice.kidsProducts);
+	const fetchedKidsProducts = useSelector(
+		(state) => state.productSlice.fetchedKidsProducts
+	);
 	return (
 		<section className="mb-5">
-			{items.length === 0 && <Loader />}
-			{items.length !== 0 && (
+			{!fetchedKidsProducts && <Loader />}
+			{fetchedKidsProducts && (
 				<div className={`container ${styles.container}`}>
 					<div className="row">
 						{items.map((item) => {

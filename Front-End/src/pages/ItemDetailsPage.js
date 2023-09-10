@@ -12,7 +12,6 @@ function ItemDetailsPage() {
 
 	// Fetching of product details will execute whenever the params change
 	useEffect(() => {
-		console.log(params.productID);
 		dispatch(fetchProductDetails(params.productID));
 
 		// Clean up function to clear data for items detail page when component unmounts (user navigates away from the page)

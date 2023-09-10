@@ -5,10 +5,13 @@ import Loader from "../Utility/Loader";
 
 function ShopAllItems() {
 	const items = useSelector((state) => state.productSlice.allProducts);
+	const fetchedAllProducts = useSelector(
+		(state) => state.productSlice.fetchedAllProducts
+	);
 	return (
 		<section className="mb-5">
-			{items.length === 0 && <Loader />}
-			{items.length !== 0 && (
+			{!fetchedAllProducts && <Loader />}
+			{fetchedAllProducts && (
 				<div className={`container ${styles.container}`}>
 					<div className="row">
 						{items.map((item) => {

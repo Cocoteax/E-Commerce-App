@@ -9,8 +9,52 @@ import {
 } from "react-bootstrap";
 import styles from "./KidsHeader.module.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { productActions } from "../../store/product-slice";
+import { fetchKidsProducts } from "../../store/product-slice";
 
 function KidsHeader() {
+	const dispatch = useDispatch();
+	const filterTitle = useSelector(
+		(state) => state.productSlice.menProductsFilter
+	);
+
+	// handler for when sorting is clicked
+	const sortingHandler = (sortBy) => {
+		// Switch statement to handle updating of dropdown title
+		switch (sortBy) {
+			case "title":
+				dispatch(
+					productActions.changeKidsProductsFitler({
+						filter: "Sort By Name: A to Z",
+					})
+				);
+				break;
+			case "price":
+				dispatch(
+					productActions.changeKidsProductsFitler({
+						filter: "Sort By Price: Low to High",
+					})
+				);
+				break;
+			case "-price":
+				dispatch(
+					productActions.changeKidsProductsFitler({
+						filter: "Sort By Price: High to Low",
+					})
+				);
+				break;
+			default:
+				dispatch(
+					productActions.changeKidsProductsFitler({
+						filter: "Default Sorting",
+					})
+				);
+		}
+
+		// Dispatch action thunk to fetch sorted products
+		dispatch(fetchKidsProducts(sortBy));
+	};
 	return (
 		<section className="mt-5 mb-5">
 			<Container fluid className={`${styles.container}`}>
@@ -38,11 +82,16 @@ function KidsHeader() {
 						</p>
 					</Col>
 					<Col className={`text-end`}>
-						<DropdownButton title="Default Sorting" variant="outline-secondary">
-							<Dropdown.Item>Sort by popularity</Dropdown.Item>
-							<Dropdown.Item>Sort by average rating</Dropdown.Item>
-							<Dropdown.Item>Sort by price: low to high</Dropdown.Item>
-							<Dropdown.Item>Sort by price: high to low</Dropdown.Item>
+						<DropdownButton title={filterTitle} variant="outline-secondary">
+							<Dropdown.Item onClick={() => sortingHandler("title")}>
+								Sort By Name: A to Z
+							</Dropdown.Item>
+							<Dropdown.Item onClick={() => sortingHandler("price")}>
+								Sort By Price: Low to High
+							</Dropdown.Item>
+							<Dropdown.Item onClick={() => sortingHandler("-price")}>
+								Sort By Price: High to Low
+							</Dropdown.Item>
 						</DropdownButton>
 					</Col>
 				</Row>
