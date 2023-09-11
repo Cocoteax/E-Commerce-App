@@ -20,7 +20,7 @@ function CartSection() {
 							>
 								<thead>
 									<tr>
-										<th scope="col">{cart.cartItems.length}</th>
+										<th scope="col">#</th>
 										<th scope="col">Product</th>
 										<th scope="col">Category</th>
 										<th scope="col">Price</th>

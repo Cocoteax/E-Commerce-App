@@ -13,7 +13,6 @@ const cartSlice = createSlice({
 		loadCart(state, action) {
 			state.cart = action.payload.cartItems;
 			state.fetchedCart = true;
-			console.log(state.cart);
 		},
 		// Redux reducer for adding product to cart (Focus on responsiveness by updating the cart state, then triggering PUT request)
 		addToCartReducer(state, action) {
