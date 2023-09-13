@@ -5,8 +5,3 @@
 .container {
     position:relative;
 }
-
-.carousel {
-    height: 20rem;
-    position: absolute;
-}

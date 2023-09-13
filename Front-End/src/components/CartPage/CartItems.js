@@ -5,19 +5,27 @@ import { Link } from "react-router-dom";
 import styles from "./CartItems.module.css";
 
 function CartItems(props) {
+	// Destructure cart item from props using nested destructuring
+	const {
+		cartItem: {
+			product,
+			product: { title, _id: productID, category, price },
+			quantity,
+			subtotal,
+		},
+	} = props;
+
 	const dispatch = useDispatch();
 
 	// Handle the adding/removing from cut using redux reducers
 	// NOTE: By using redux reducers and not sending a POST/DELETE request straight away, we can focus on responsiveness because request will be sent after ui changes
 	const addToCartHandler = () => {
-		dispatch(
-			cartActions.addToCartReducer({ newProduct: props.cartItem.product })
-		); // Pass in the product to be added
+		dispatch(cartActions.addToCartReducer({ newProduct: product })); // Pass in the product to be added
 	};
 	const removeFromCartHandler = () => {
 		dispatch(
 			cartActions.removeFromCartReducer({
-				productID: props.cartItem.product._id,
+				productID: productID,
 			})
 		);
 	};
@@ -26,15 +34,15 @@ function CartItems(props) {
 			<th scope="row">{props.index + 1}</th>
 			<td>
 				<Link
-					to={`../products/${props.cartItem.product._id}`}
+					to={`../products/${productID}`}
 					relative="path"
 					className={`${styles.productTitle}`}
 				>
-					{props.cartItem.product.title}
+					{title}
 				</Link>
 			</td>
-			<td>{props.cartItem.product.category}</td>
-			<td>{props.cartItem.product.price}</td>
+			<td>{category}</td>
+			<td>${price}.00</td>
 			<td>
 				<div className="btn-group" role="group">
 					<button
@@ -44,8 +52,12 @@ function CartItems(props) {
 					>
 						<i className="fa-solid fa-minus"></i>
 					</button>
-					<button type="button" className="btn btn-outline-dark btn-sm px-3">
-						{props.cartItem.quantity}
+					<button
+						type="button"
+						className="btn btn-outline-dark btn-sm px-3"
+						disabled
+					>
+						{quantity}
 					</button>
 					<button
 						type="button"
@@ -56,7 +68,7 @@ function CartItems(props) {
 					</button>
 				</div>
 			</td>
-			<td>${props.cartItem.subtotal}.00</td>
+			<td>${subtotal}.00</td>
 		</tr>
 	);
 }

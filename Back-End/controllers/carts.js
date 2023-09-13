@@ -7,6 +7,7 @@ const Product = require("../models/Product");
 const getCart = async (req, res, next) => {
 	try {
 		// Use .populate() to populate the products in the cart
+		// TODO: Update this to get cart belonging to current user
 		const cart = await Cart.findOne().populate({
 			path: "cartItems.product",
 			select: "title category price",
@@ -30,6 +31,7 @@ const postCart = async (req, res, next) => {
 		// Get product to be added
 		const product = await Product.findById(productID).select("-description");
 		// Get current cart
+		// TODO: Update this to get cart belonging to current user
 		const cart = await Cart.findById("64f42c212be8c8af6cd32c39");
 
 		let existingItemIndex = -1;
@@ -79,6 +81,7 @@ const deleteFromCart = async (req, res, next) => {
 		const product = await Product.findById(productID);
 
 		// Get cart
+		// TODO: Update this to get cart belonging to current user
 		const cart = await Cart.findById("64f42c212be8c8af6cd32c39");
 
 		let existingItemIndex = -1;
@@ -138,6 +141,7 @@ const updateCart = async (req, res, next) => {
 
 		// Update current cart
 		// findByIdAndUpdate accepts 4 parameters: filter, update, options, callback
+		// TODO: Update this to get cart belonging to current user
 		const cart = await Cart.findByIdAndUpdate(
 			"64f42c212be8c8af6cd32c39",
 			{ $set: product },

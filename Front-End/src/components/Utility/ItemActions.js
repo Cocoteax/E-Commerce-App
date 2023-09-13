@@ -4,12 +4,14 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 
 function ItemActions(props) {
+	// Destructure item from props
+	const { item } = props;
 	const dispatch = useDispatch();
 
-    // Add to cart using our redux reducer
+	// Add to cart using our redux reducer
 	const addToCartHandler = (event) => {
 		event.stopPropagation();
-		dispatch(cartActions.addToCartReducer({ newProduct: props.item }));
+		dispatch(cartActions.addToCartReducer({ newProduct: item}));
 	};
 	return (
 		<>

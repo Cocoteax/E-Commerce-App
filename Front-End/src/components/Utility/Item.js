@@ -6,6 +6,13 @@ import { useNavigate } from "react-router-dom";
 import BASE_URL from "../Utility/BaseURL";
 
 function Item(props) {
+	// Destructure items from props
+	// NOTE: We use nested object destructuring
+	const {
+		item: { category, imageURL, title, price, _id: productID },
+		item,
+	} = props;
+
 	const [showActions, setShowActions] = useState(false);
 	const navigate = useNavigate();
 
@@ -19,7 +26,7 @@ function Item(props) {
 
 	// Navigate to item details page for this specific item
 	const getItemDetailsHandler = () => {
-		navigate(`/products/${props.item._id}`);
+		navigate(`/products/${productID}`);
 	};
 
 	return (
@@ -30,21 +37,19 @@ function Item(props) {
 			onClick={getItemDetailsHandler}
 		>
 			<Card.Img
-				src={`${BASE_URL}/images/${props.item.imageURL}`}
+				src={`${BASE_URL}/images/${imageURL}`}
 				className={`${styles.itemImage} p-0 m-0 img-fluid`}
 			/>
 			<Card.Body>
 				<Card.Subtitle className={`${styles.itemCategory} mb-2`}>
-					{props.item.category}
+					{category}
 				</Card.Subtitle>
-				<Card.Title className={`${styles.itemTitle}`}>
-					{props.item.title}
-				</Card.Title>
+				<Card.Title className={`${styles.itemTitle}`}>{title}</Card.Title>
 				<Card.Text className={`${styles.itemPrice}`}>
-					{`$${props.item.price}.00`}
+					{`$${price}.00`}
 				</Card.Text>
 			</Card.Body>
-			{showActions && <ItemActions item={props.item} />}
+			{showActions && <ItemActions item={item} />}
 		</Card>
 	);
 }

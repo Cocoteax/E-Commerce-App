@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const ErrorResponse = require("../utils/errorResponse");
 
 // @desc    Get featured products for home page carousel
 // @route   GET /api/v1/products/featured
@@ -21,6 +22,12 @@ const getFeaturedProducts = async (req, res, next) => {
 		const featuredProducts = result.map((subArray) =>
 			subArray.map((item) => item)
 		);
+
+		// No products found
+		if (!featuredProducts) {
+			return next(new ErrorResponse("No resources found", 404));
+		}
+
 		res.status(200).json({
 			success: true,
 			count: products.length,
@@ -46,6 +53,11 @@ const getAllProducts = async (req, res, next) => {
 
 		// Execute query
 		const products = await query;
+
+		// No products found
+		if (!products) {
+			return next(new ErrorResponse("No resources found", 404));
+		}
 		res.status(200).json({
 			success: true,
 			count: products.length,
@@ -69,6 +81,11 @@ const getWomenProducts = async (req, res, next) => {
 		}
 		const products = await query;
 
+		// No products found
+		if (!products) {
+			return next(new ErrorResponse("No resources found", 404));
+		}
+
 		res.status(200).json({
 			success: true,
 			count: products.length,
@@ -91,6 +108,10 @@ const getMenProducts = async (req, res, next) => {
 			query.sort(req.query.sort);
 		}
 		const products = await query;
+		// No products found
+		if (!products) {
+			return next(new ErrorResponse("No resources found", 404));
+		}
 		res.status(200).json({
 			success: true,
 			count: products.length,
@@ -112,7 +133,14 @@ const getKidsProducts = async (req, res, next) => {
 		if (req.query.sort) {
 			query.sort(req.query.sort);
 		}
+
 		const products = await query;
+
+		// No products found
+		if (!products) {
+			return next(new ErrorResponse("No resources found", 404));
+		}
+
 		res.status(200).json({
 			success: true,
 			count: products.length,
@@ -129,6 +157,17 @@ const getKidsProducts = async (req, res, next) => {
 const getSingleProduct = async (req, res, next) => {
 	try {
 		const product = await Product.findById(req.params.productID);
+
+		// No product found
+		if (!product) {
+			return next(
+				new ErrorResponse(
+					`Resource with id ${req.params.productID} not found`,
+					404
+				)
+			);
+		}
+
 		res.status(200).json({
 			success: true,
 			data: product,
