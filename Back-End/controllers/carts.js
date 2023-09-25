@@ -1,5 +1,6 @@
 const Cart = require("../models/Cart");
 const Product = require("../models/Product");
+const ErrorResponse = require("../utils/errorResponse");
 
 // @desc    Get cart for specific user
 // @route   GET /api/v1/cart
@@ -7,11 +8,11 @@ const Product = require("../models/Product");
 const getCart = async (req, res, next) => {
 	try {
 		// Use .populate() to populate the products in the cart
-		// TODO: Update this to get cart belonging to current user
-		const cart = await Cart.findOne().populate({
+		let cart = await Cart.find({ userID: req.user._id }).populate({
 			path: "cartItems.product",
 			select: "title category price",
 		});
+		cart = cart[0]; // .find() returns an array, but we only want the object for frontend
 		res.status(200).json({
 			success: true,
 			data: cart,
@@ -31,8 +32,8 @@ const postCart = async (req, res, next) => {
 		// Get product to be added
 		const product = await Product.findById(productID).select("-description");
 		// Get current cart
-		// TODO: Update this to get cart belonging to current user
-		const cart = await Cart.findById("64f42c212be8c8af6cd32c39");
+		let cart = await Cart.find({ userID: req.user._id });
+		cart = cart[0]; // .find() returns an array, but we only need the cart object for front-end
 
 		let existingItemIndex = -1;
 
@@ -81,8 +82,8 @@ const deleteFromCart = async (req, res, next) => {
 		const product = await Product.findById(productID);
 
 		// Get cart
-		// TODO: Update this to get cart belonging to current user
-		const cart = await Cart.findById("64f42c212be8c8af6cd32c39");
+		let cart = await Cart.find({ userID: req.user._id });
+		cart = cart[0]; // .find() returns an array, but we only need the cart object for front-end
 
 		let existingItemIndex = -1;
 
@@ -137,20 +138,22 @@ const deleteFromCart = async (req, res, next) => {
 // @access  PRIVATE
 const updateCart = async (req, res, next) => {
 	try {
-		const product = req.body.cart;
+		const updatedCart = req.body.cart;
 
 		// Update current cart
 		// findByIdAndUpdate accepts 4 parameters: filter, update, options, callback
-		// TODO: Update this to get cart belonging to current user
-		const cart = await Cart.findByIdAndUpdate(
-			"64f42c212be8c8af6cd32c39",
-			{ $set: product },
+		// Get user's cart
+		let cart = await Cart.find({ userID: req.user._id });
+		cart = cart[0]; // .find() returns an array, but we only need the cart object for front-end
+		const newCart = await Cart.findByIdAndUpdate(
+			cart._id,
+			{ $set: updatedCart },
 			{ new: true, runValidators: true }
 		);
 
 		res.status(200).json({
 			success: true,
-			data: cart,
+			data: newCart,
 		});
 	} catch (e) {
 		next(e);

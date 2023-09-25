@@ -25,6 +25,11 @@ const CartSchema = new Schema({
 	totalPrice: {
 		type: Number,
 	},
+	userID: {
+		type: Schema.Types.ObjectId,
+		required: true,
+		ref: "User",
+	},
 });
 
 module.exports = mongoose.model("Cart", CartSchema, "carts");

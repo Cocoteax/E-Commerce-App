@@ -14,16 +14,16 @@ connectDB();
 const products = JSON.parse(
 	fs.readFileSync(`${__dirname}/_data/products.json`)
 );
-// const users = JSON.parse(fs.readFileSync(`${__dirname}/_data/users.json`));
+const users = JSON.parse(fs.readFileSync(`${__dirname}/_data/users.json`));
 
-const carts = JSON.parse(fs.readFileSync(`${__dirname}/_data/carts.json`));
+// const carts = JSON.parse(fs.readFileSync(`${__dirname}/_data/carts.json`));
 
 // Import JSON data into DB
 const importData = async () => {
 	try {
 		await Product.create(products);
-		// await User.create(users);
-		await Cart.create(carts);
+		await User.create(users);
+		// await Cart.create(carts);
 		console.log("Data Imported...");
 		process.exit();
 	} catch (e) {
@@ -35,7 +35,7 @@ const importData = async () => {
 const deleteData = async () => {
 	try {
 		await Product.deleteMany();
-		// await User.deleteMany();
+		await User.deleteMany();
 		await Cart.deleteMany();
 		console.log("Data Deleted...");
 		process.exit();
@@ -47,12 +47,12 @@ const deleteData = async () => {
 const resetData = async () => {
 	try {
 		await Product.deleteMany();
-		// await User.deleteMany()
+		await User.deleteMany();
 		await Cart.deleteMany();
 		console.log("Data Deleted...");
 		await Product.create(products);
-		// await User.create(users);
-		await Cart.create(carts);
+		await User.create(users);
+		// await Cart.create(carts);
 		console.log("Data Imported...");
 		process.exit();
 	} catch (e) {

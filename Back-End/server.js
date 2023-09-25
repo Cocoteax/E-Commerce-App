@@ -1,4 +1,5 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
@@ -16,6 +17,7 @@ const NODE_ENV = process.env.NODE_ENV; // Get node env from npm scripts
 // Import routes
 const productRoutes = require("./routes/products");
 const cartRoutes = require("./routes/carts");
+const authRoutes = require("./routes/auth");
 
 // ========== Set up middlewares ========== //
 app.use(bodyParser.urlencoded({ extended: false })); // For FORM html elements
@@ -42,6 +44,20 @@ if (process.env.NODE_ENV === "development") {
 // 	}
 // });
 
+// Middleware to hardcode retrieve user for now
+// TODO: Convert this into a protectRoute middleware that verifies user auth and store the uset to req.user
+app.use(async (req, res, next) => {
+	try {
+		const user = await mongoose
+			.model("User")
+			.findById("5d7a514b5d2c12c7449be042");
+		req.user = user;
+		next();
+	} catch (e) {
+		next(e);
+	}
+});
+
 // Enable API to be public so that it can be accessed by different domains (Required for full stack applications)
 app.use(cors());
 
@@ -52,6 +68,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // ========== Set up routes ========== //
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/carts", cartRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 // Error handler middleware
 // NOTE: This middleware must come after routes since we pass the error to errorHandler by calling next() within controllers

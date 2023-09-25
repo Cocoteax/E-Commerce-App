@@ -53,4 +53,20 @@ UserSchema.pre("save", async function (next) {
 	next();
 });
 
+// Use mongoose pre-middleware to create a new cart automatically when user registers for the first time
+UserSchema.pre("save", async function (next) {
+	if (!this.isNew) {
+		console.log("user exists");
+		next();
+	}
+	// Create a new cart for user
+	await mongoose.model("Cart").create({
+		cartItems: [],
+		totalQuantity: 0,
+		totalPrice: 0,
+		userID: this._id,
+	});
+	next();
+});
+
 module.exports = mongoose.model("User", UserSchema, "users");
