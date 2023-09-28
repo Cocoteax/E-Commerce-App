@@ -6,6 +6,7 @@ const connectDB = require("./config/db");
 const bodyParser = require("body-parser");
 const path = require("path");
 const morgan = require("morgan"); // 3rd party logger
+const cookieParser = require("cookie-parser"); // Handle cookies
 const errorHandler = require("./middleware/error"); // Custom error handler
 const cors = require("cors"); // Required to enable different domains to access API
 
@@ -27,6 +28,8 @@ app.use(bodyParser.json()); // For JSON input
 if (process.env.NODE_ENV === "development") {
 	app.use(morgan("dev"));
 }
+// Cookie parser for setting & accessing cookies
+app.use(cookieParser());
 
 // // Middleware to retrieve the actual mongoose user object with all its defined schema methods
 // // NOTE: If we access req.session.user, it will only contain the raw user data and not the methods of the user object
@@ -46,20 +49,26 @@ if (process.env.NODE_ENV === "development") {
 
 // Middleware to hardcode retrieve user for now
 // TODO: Convert this into a protectRoute middleware that verifies user auth and store the uset to req.user
-app.use(async (req, res, next) => {
-	try {
-		const user = await mongoose
-			.model("User")
-			.findById("5d7a514b5d2c12c7449be042");
-		req.user = user;
-		next();
-	} catch (e) {
-		next(e);
-	}
-});
+// app.use(async (req, res, next) => {
+// 	try {
+// 		const user = await mongoose
+// 			.model("User")
+// 			.findById("5d7a514b5d2c12c7449be042");
+// 		req.user = user;
+// 		next();
+// 	} catch (e) {
+// 		next(e);
+// 	}
+// });
 
 // Enable API to be public so that it can be accessed by different domains (Required for full stack applications)
-app.use(cors());
+const corsOptions = {
+	// origin: "http://localhost:3000",
+	origin: "https://e-commerce-app-react-frontend.vercel.app/",
+	credentials: true, //access-control-allow-credentials:true
+	optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 // Set static folder for serving static files such as images
 // This allows the internet to be able to retrieve files from the local static folder by going to domain/public/filePath

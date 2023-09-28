@@ -83,18 +83,26 @@ const cartSlice = createSlice({
 
 export const fetchCart = () => {
 	return async (dispatch) => {
-        console.log("fetching cart")
-		const response = await axios.get(`${BASE_URL}/api/v1/carts`);
+		console.log("fetching cart");
+		const response = await axios.get(`${BASE_URL}/api/v1/carts`, {
+			withCredentials: true,
+		});
 		const cartItems = response.data.data;
 		dispatch(cartSlice.actions.loadCart({ cartItems: cartItems }));
 	};
 };
 
 // Action thunk with PUT request that triggers whenever we change the cart state using our redux reducers
-// NOTE: This thunk executes whenever our cart changes state because of the useEffect() that we set up in CartPage which triggers whenever cart state changes
+// NOTE: This thunk executes whenever our cart changes state because of the useEffect() that we set up in App.js which triggers whenever cart state changes
 export const updateCart = (cart) => {
 	return async (dispatch) => {
-		await axios.put(`${BASE_URL}/api/v1/carts`, { cart });
+		await axios.put(
+			`${BASE_URL}/api/v1/carts`,
+			{ cart },
+			{
+				withCredentials: true,
+			}
+		);
 	};
 };
 

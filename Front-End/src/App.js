@@ -12,7 +12,8 @@ import CartPage from "./pages/CartPage";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart, updateCart } from "./store/cart-slice";
 import { cartActions } from "./store/cart-slice";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import LoginPage from "./pages/LoginPage";
 
 const router = createBrowserRouter([
 	{
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
 				path: "cart",
 				element: <CartPage />,
 			},
+			{
+				path: "login",
+				element: <LoginPage />,
+			},
 		],
 		errorElement: <Error />,
 	},
@@ -59,14 +64,18 @@ function App() {
 	const fetchedCart = useSelector((state) => state.cartSlice.fetchedCart);
 	const cartChanged = useSelector((state) => state.cartSlice.cartChanged);
 	const cart = useSelector((state) => state.cartSlice.cart);
+	const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
 
-	// Load current cart products upon initial load
+	// Load current cart products upon initial load IFF user has logged in
 	useEffect(() => {
+		if (!isLoggedIn) {
+			return;
+		}
 		// Fetch the cart once upon initial load
 		if (!fetchedCart) {
 			dispatch(fetchCart());
 		}
-	}, [dispatch, fetchedCart]);
+	}, [dispatch, fetchedCart, isLoggedIn]);
 
 	// useEffect to handle updating of cart state in the cart page
 	useEffect(() => {
@@ -79,6 +88,8 @@ function App() {
 			dispatch(cartActions.resetCartChangedStatus());
 		}
 	}, [cart, dispatch, cartChanged]);
+
+	// TODO: useEffect to handle persisting of users when page refreshes
 
 	return <RouterProvider router={router} />;
 }

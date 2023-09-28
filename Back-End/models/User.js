@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 // ========== mongoose method ========== //
 const UserSchema = new Schema({
@@ -68,5 +69,21 @@ UserSchema.pre("save", async function (next) {
 	});
 	next();
 });
+
+// Schema method to sign JWT and return the token for the current document
+// NOTE: "this" refers to the document in this case
+UserSchema.methods.getSignedJwtToken = function () {
+	// jwt.sign() accepts the payload as the first arg, secret as second arg, config object as third arg
+	return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+		expiresIn: process.env.JWT_EXPIRE,
+	});
+};
+
+// Schema method to validate password for the current document
+// NOTE: "this" refers to document since we use a schema method
+UserSchema.methods.validatePassword = async function (enteredPassword) {
+	// To compare hashed passwords, use bcrypt.compare
+	return await bcrypt.compare(enteredPassword, this.password);
+};
 
 module.exports = mongoose.model("User", UserSchema, "users");

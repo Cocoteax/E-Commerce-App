@@ -5,6 +5,10 @@ import { NavLink, useParams, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Navigation() {
+	// TODO: Change this to a redux state
+	// const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
+
 	// Get access to cart total quantity redux state
 	const cartTotalQty = useSelector(
 		(state) => state.cartSlice.cart.totalQuantity
@@ -91,16 +95,6 @@ function Navigation() {
 								>
 									<span>KIDS</span>
 								</NavLink>
-								{/* <NavLink
-									to="blog"
-									className={({ isActive }) =>
-										isActive
-											? `${styles.active} mx-3 my-2`
-											: `${styles.navLink} mx-3 my-2`
-									}
-								>
-									<span>BLOG</span>
-								</NavLink> */}
 								<NavLink
 									to="orders"
 									className={({ isActive }) =>
@@ -116,31 +110,44 @@ function Navigation() {
 							<Nav
 								className={`ms-auto justify-content-center align-items-center me-4 ${styles.iconNav}`}
 							>
-								<div
-									className={`d-flex justify-content-between align-items-center ${styles.iconDiv}`}
-								>
-									<NavLink
-										to="search"
-										className={`${styles.icon} ${styles.searchIcon}`}
+								{!isLoggedIn && (
+									<div>
+										<NavLink
+											to="login"
+											className={`${styles.icon} ${styles.searchIcon} ${styles.loginLink}`}
+										>
+											<i className="fa-solid fa-user"></i>
+											<span className={`ms-3`}>LOGIN</span>
+										</NavLink>
+									</div>
+								)}
+								{isLoggedIn && (
+									<div
+										className={`d-flex justify-content-between align-items-center ${styles.iconDiv}`}
 									>
-										<i className="fa-solid fa-magnifying-glass"></i>
-									</NavLink>
-									<NavLink
-										to="profile"
-										className={`${styles.icon} ${styles.searchIcon}`}
-									>
-										<i className="fa-solid fa-user"></i>
-									</NavLink>
-									<NavLink
-										to="cart"
-										className={`${styles.icon} ${styles.searchIcon}`}
-									>
-										<i
-											value={cartTotalQty}
-											className={`fa-solid fa-cart-shopping ${styles.cart}`}
-										></i>
-									</NavLink>
-								</div>
+										<NavLink
+											to="search"
+											className={`${styles.icon} ${styles.searchIcon}`}
+										>
+											<i className="fa-solid fa-magnifying-glass"></i>
+										</NavLink>
+										<NavLink
+											to="profile"
+											className={`${styles.icon} ${styles.searchIcon}`}
+										>
+											<i className="fa-solid fa-user"></i>
+										</NavLink>
+										<NavLink
+											to="cart"
+											className={`${styles.icon} ${styles.searchIcon}`}
+										>
+											<i
+												value={cartTotalQty}
+												className={`fa-solid fa-cart-shopping ${styles.cart}`}
+											></i>
+										</NavLink>
+									</div>
+								)}
 							</Nav>
 						</Offcanvas.Body>
 					</Navbar.Offcanvas>

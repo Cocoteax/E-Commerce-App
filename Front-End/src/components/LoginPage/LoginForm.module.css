@@ -1,0 +1,38 @@
+.container {
+	width: 90%;
+}
+
+.loginHeader {
+	font-size: 28px;
+	font-weight: 900;
+}
+
+/* CSS styles for the input boxes */
+.input,
+.input:active,
+.input:focus {
+	background-color: #e6e6e6;
+}
+
+.input:focus {
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #827ffe;
+}
+
+/* CSS styles for the labels */
+.label {
+	font-size: 17px;
+	font-weight: 900;
+	color: rgba(64, 56, 102, 0.6);
+}
+
+.button {
+	background-color: #827ffe;
+	color: white;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.button:hover {
+	background-color: #3c3aab;
+	color: white;
+}

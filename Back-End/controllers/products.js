@@ -43,6 +43,7 @@ const getFeaturedProducts = async (req, res, next) => {
 // @access  PUBLIC
 const getAllProducts = async (req, res, next) => {
 	try {
+		console.log(req.cookies);
 		// NOTE: query is just a promise that hasn't been executed yet => This allows us to chain on other methods if needed before executing query
 		let query = Product.find().select("-description");
 
