@@ -100,7 +100,7 @@ const sendTokenResponse = (user, statusCode, res) => {
 			Date.now() + process.env.JWT_COOKIE_EXPIRE * 1000 * 60 * 60 * 24
 		),
 		httpOnly: true, // Ensure cookies can only be manipulated by server and not client
-		SameSite: "none",
+		sameSite: "none",
 	};
 
 	// Set secure flag HTTPS if in production
@@ -110,7 +110,7 @@ const sendTokenResponse = (user, statusCode, res) => {
 
 	// Send back response with status and set cookie with res.cookie
 	console.log("setting cookie");
-	res.status(statusCode).cookie("token", token, options).json({
+	res.status(statusCode).cookie("token", token, option).json({
 		success: true,
 		token: token,
 	});
