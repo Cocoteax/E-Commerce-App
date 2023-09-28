@@ -62,14 +62,13 @@ app.use(cookieParser());
 // });
 
 // Enable API to be public so that it can be accessed by different domains (Required for full stack applications)
-// const corsOptions = {
-// 	// origin: "http://localhost:3000",
-// 	origin: "https://e-commerce-app-react-frontend.vercel.app",
-// 	credentials: true, //access-control-allow-credentials:true
-// 	optionSuccessStatus: 200,
-// };
-// app.use(cors(corsOptions));
-app.use(cors());
+const corsOptions = {
+	// origin: "http://localhost:3000",
+	// origin: "https://e-commerce-app-react-frontend.vercel.app",
+	credentials: true, //access-control-allow-credentials:true
+	optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 // Set static folder for serving static files such as images
 // This allows the internet to be able to retrieve files from the local static folder by going to domain/public/filePath
