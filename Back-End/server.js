@@ -64,7 +64,10 @@ app.use(cookieParser());
 // Enable API to be public so that it can be accessed by different domains (Required for full stack applications)
 const corsOptions = {
 	// origin: "http://localhost:3000",
-	origin: "https://e-commerce-app-react-frontend.vercel.app/*",
+	origin: [
+		"https://e-commerce-app-react-frontend.vercel.app",
+		"https://e-commerce-app-rest-api.vercel.app/api/v1/auth/login",
+	],
 	credentials: true, //access-control-allow-credentials:true
 	optionSuccessStatus: 200,
 };
