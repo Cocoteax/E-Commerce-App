@@ -110,7 +110,7 @@ const sendTokenResponse = (user, statusCode, res) => {
 
 	// Send back response with status and set cookie with res.cookie
 	console.log("setting cookie");
-	res.status(statusCode).cookie("token", token, option).json({
+	res.status(statusCode).cookie("token", token, options).json({
 		success: true,
 		token: token,
 	});
