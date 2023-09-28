@@ -99,7 +99,8 @@ const sendTokenResponse = (user, statusCode, res) => {
 		expires: new Date(
 			Date.now() + process.env.JWT_COOKIE_EXPIRE * 1000 * 60 * 60 * 24
 		),
-		// httpOnly: true, // Ensure cookies can only be manipulated by server and not client
+		httpOnly: true, // Ensure cookies can only be manipulated by server and not client
+		SameSite: "none",
 	};
 
 	// Set secure flag HTTPS if in production
