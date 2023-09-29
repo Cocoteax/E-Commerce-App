@@ -89,6 +89,21 @@ const logoutUser = async (req, res, next) => {
 	}
 };
 
+// @desc Validate JWT for user persistance
+// @route POST /api/v1/auth/validateToken
+// @access PRVATE
+const validateToken = async (req, res, next) => {
+	try {
+		// This route will pass through protectRoute middleware, hence if no token, there will be no req.user
+		if (!req.user) {
+			return next(new ErrorResponse(`No user currently logged in`, 400));
+		}
+		sendTokenResponse(req.user, 200, res);
+	} catch (e) {
+		next(e);
+	}
+};
+
 // Custom function to get token from model, set cookie, and send response
 const sendTokenResponse = (user, statusCode, res) => {
 	const token = user.getSignedJwtToken();
@@ -100,7 +115,7 @@ const sendTokenResponse = (user, statusCode, res) => {
 			Date.now() + process.env.JWT_COOKIE_EXPIRE * 1000 * 60 * 60 * 24
 		),
 		httpOnly: true, // Ensure cookies can only be manipulated by server and not client
-		sameSite: "none",
+		sameSite: "none", // Set for production only (Won't work in dev environment)
 	};
 
 	// Set secure flag HTTPS if in production
@@ -109,7 +124,6 @@ const sendTokenResponse = (user, statusCode, res) => {
 	}
 
 	// Send back response with status and set cookie with res.cookie
-	console.log("setting cookie");
 	res.status(statusCode).cookie("token", token, options).json({
 		success: true,
 		token: token,
@@ -120,4 +134,5 @@ module.exports = {
 	registerUser,
 	loginUser,
 	logoutUser,
+	validateToken,
 };

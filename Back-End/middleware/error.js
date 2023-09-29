@@ -4,7 +4,7 @@ const ErrorReponse = require("../utils/errorResponse");
 const errorHandler = (err, req, res, next) => {
 	let error = { ...err };
 	error.message = err.message; // Append err.message property to error since spread operator doesn't copy it over
-	console.log("errorHandler Invoked");
+	console.log(`errorHandler Invoked: ${error.message}`);
 	// Check for different types of errors based on err.name and handle them accordingly using our custom ErrorReponse
 	// Mongoose bad ObjectID
 	if (err.name === "CastError") {

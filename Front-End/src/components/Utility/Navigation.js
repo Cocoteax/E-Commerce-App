@@ -5,8 +5,7 @@ import { NavLink, useParams, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Navigation() {
-	// TODO: Change this to a redux state
-	// const [isLoggedIn, setIsLoggedIn] = useState(false);
+	// Redux state to check if user is logged in
 	const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
 
 	// Get access to cart total quantity redux state

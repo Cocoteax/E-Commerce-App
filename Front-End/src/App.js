@@ -12,8 +12,9 @@ import CartPage from "./pages/CartPage";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart, updateCart } from "./store/cart-slice";
 import { cartActions } from "./store/cart-slice";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import LoginPage from "./pages/LoginPage";
+import { persisUser } from "./store/auth-slice";
 
 const router = createBrowserRouter([
 	{
@@ -66,6 +67,11 @@ function App() {
 	const cart = useSelector((state) => state.cartSlice.cart);
 	const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
 
+	// Try to persist user if they are logged in (If there is valid JWT cookies)
+	useEffect(() => {
+		dispatch(persisUser());
+	}, [dispatch]);
+
 	// Load current cart products upon initial load IFF user has logged in
 	useEffect(() => {
 		if (!isLoggedIn) {
@@ -88,8 +94,6 @@ function App() {
 			dispatch(cartActions.resetCartChangedStatus());
 		}
 	}, [cart, dispatch, cartChanged]);
-
-	// TODO: useEffect to handle persisting of users when page refreshes
 
 	return <RouterProvider router={router} />;
 }

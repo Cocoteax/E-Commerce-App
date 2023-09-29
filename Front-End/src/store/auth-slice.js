@@ -24,15 +24,33 @@ export const loginUser = (formData) => {
 					email: formData.email,
 					password: formData.password,
 				},
-				{ withCredentials: true,  }
+				{ withCredentials: true }
 			);
 			if (response.status === 200) {
-				console.log("successfully login");
+				console.log("successful login");
 				dispatch(authSlice.actions.setLoggedInStatus({ isLoggedIn: true }));
 			}
 		} catch (e) {
 			// If response throws an error, we handle it here (E.g, no user found with credentials)
 			// TODO: Build an alert UI to inform user of unsuccessful login
+			console.log(e);
+		}
+	};
+};
+
+// Action thunk to persist user logged in by validating JWT cookies
+export const persisUser = () => {
+	return async (dispatch) => {
+		try {
+			const response = await axios.post(
+				`${BASE_URL}/api/v1/auth/validateToken`,
+				null,
+				{ withCredentials: true }
+			);
+			if (response.status === 200) {
+				dispatch(authSlice.actions.setLoggedInStatus({ isLoggedIn: true }));
+			}
+		} catch (e) {
 			console.log(e);
 		}
 	};
