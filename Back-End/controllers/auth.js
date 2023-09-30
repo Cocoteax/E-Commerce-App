@@ -72,16 +72,24 @@ const logoutUser = async (req, res, next) => {
 			console.log("No token found");
 			return next(new ErrorResponse(`User is currently not logged in`, 400));
 		}
-		// Set JWT to none when user logs out and make it expire in 10s
-		// NOTE: When cookie expires, it becomes cleared. But to be safe, we also clear it with res.clearCookie
-		res.cookie("token", "none", {
-			expires: new Date(Date.now() + 10 * 1000),
-			httpOnly: true,
-			sameSite: "none",
-		});
-		// res.clearCookie("token");
+		// // Set JWT to none when user logs out and make it expire in 10s
+		// // NOTE: When cookie expires, it becomes cleared. But to be safe, we also clear it with res.clearCookie
+		// res.cookie("token", "none", {
+		// 	expires: new Date(Date.now() + 10 * 1000),
+		// 	httpOnly: true,
+		// 	sameSite: "none", // Set for production only (Won't work in dev environment)
+		// });
+		// // res.clearCookie("token");
 
-		res.status(200).json({
+		// Options for setting cookie
+		const options = {
+			// Date(ms) => Need to set cookie to expire in 30 days
+			expires: new Date(Date.now() + 10 * 1000),
+			httpOnly: true, // Ensure cookies can only be manipulated by server and not client
+			sameSite: "none", // Set for production only (Won't work in dev environment)
+		};
+
+		res.status(statusCode).cookie("token", "none", options).json({
 			success: true,
 			data: "User successfully logged out",
 		});
