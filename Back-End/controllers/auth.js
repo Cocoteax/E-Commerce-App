@@ -87,6 +87,7 @@ const logoutUser = async (req, res, next) => {
 			expires: new Date(Date.now() + 10 * 1000),
 			httpOnly: true, // Ensure cookies can only be manipulated by server and not client
 			sameSite: "none", // Set for production only (Won't work in dev environment)
+			secure: true,
 		};
 
 		res.status(200).cookie("token", "none", options).json({
