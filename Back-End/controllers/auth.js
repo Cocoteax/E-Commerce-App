@@ -73,12 +73,12 @@ const logoutUser = async (req, res, next) => {
 			return next(new ErrorResponse(`User is currently not logged in`, 400));
 		}
 		// Set JWT to none when user logs out and make it expire in 10s
-		// NOTE: When cookie expires, it becomes cleared. Same effect as res.clearCookie("token")
+		// NOTE: When cookie expires, it becomes cleared. But to be safe, we also clear it with res.clearCookie
 		// res.cookie("token", "none", {
 		// 	expires: new Date(Date.now() + 10 * 1000),
 		// 	httpOnly: true,
 		// });
-		res.clearCookie("token");
+		res.clearCookie("token", { sameSite: "none", httpOnly: true });
 
 		res.status(200).json({
 			success: true,
