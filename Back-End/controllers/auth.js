@@ -89,7 +89,7 @@ const logoutUser = async (req, res, next) => {
 			sameSite: "none", // Set for production only (Won't work in dev environment)
 		};
 
-		res.status(statusCode).cookie("token", "none", options).json({
+		res.status(200).cookie("token", "none", options).json({
 			success: true,
 			data: "User successfully logged out",
 		});
