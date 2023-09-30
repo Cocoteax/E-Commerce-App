@@ -1,11 +1,11 @@
 .container {
-    width: 85%;
+	width: 85%;
 }
-
-
+.cardRow {
+    height: 10rem;
+}
 .cardImg {
 	/* Setting height to 100% will not take up the entire column height, but only 100% of what it's allowed to take because card still needs to cater for card.body */
-    height: 12rem;
-    width: 15%;
+	height: 100%;
 	object-fit: contain;
 }

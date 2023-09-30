@@ -14,7 +14,10 @@ import { fetchCart, updateCart } from "./store/cart-slice";
 import { cartActions } from "./store/cart-slice";
 import React, { useEffect } from "react";
 import LoginPage from "./pages/LoginPage";
-import { persisUser } from "./store/auth-slice";
+import { persistUser } from "./store/auth-slice";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import RegisterPage from "./pages/RegisterPage";
 
 const router = createBrowserRouter([
 	{
@@ -54,6 +57,10 @@ const router = createBrowserRouter([
 				path: "login",
 				element: <LoginPage />,
 			},
+			{
+				path: "register",
+				element: <RegisterPage />,
+			},
 		],
 		errorElement: <Error />,
 	},
@@ -69,7 +76,7 @@ function App() {
 
 	// Try to persist user if they are logged in (If there is valid JWT cookies)
 	useEffect(() => {
-		dispatch(persisUser());
+		dispatch(persistUser());
 	}, [dispatch]);
 
 	// Load current cart products upon initial load IFF user has logged in
@@ -95,7 +102,12 @@ function App() {
 		}
 	}, [cart, dispatch, cartChanged]);
 
-	return <RouterProvider router={router} />;
+	return (
+		<>
+			<ToastContainer />
+			<RouterProvider router={router} />
+		</>
+	);
 }
 
 export default App;

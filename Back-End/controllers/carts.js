@@ -10,7 +10,7 @@ const getCart = async (req, res, next) => {
 		// Use .populate() to populate the products in the cart
 		let cart = await Cart.findOne({ userID: req.user._id }).populate({
 			path: "cartItems.product",
-			select: "title category price",
+			select: "title category price imageURL",
 		});
 		res.status(200).json({
 			success: true,

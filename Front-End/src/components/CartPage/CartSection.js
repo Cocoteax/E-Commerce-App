@@ -1,12 +1,14 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Image } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import CartItems from "./CartItems";
 import Loader from "../Utility/Loader";
+import BASE_URL from "../Utility/BaseURL";
+import styles from "./CartSection.module.css";
 
 function CartSection() {
 	const cart = useSelector((state) => state.cartSlice.cart);
-    const fetchedCart = useSelector(state => state.cartSlice.fetchedCart)
+	const fetchedCart = useSelector((state) => state.cartSlice.fetchedCart);
 
 	return (
 		<section className={`mb-5`}>
@@ -50,6 +52,29 @@ function CartSection() {
 					</Row>
 				</Container>
 			)}
+			{/* <Container>
+				{cart.cartItems.map((cartItem) => {
+					return (
+						<Row className={`mb-3`}>
+							<Col
+								className={`${styles.cardRow} d-flex justify-content-center`}
+							>
+								<Image
+									className={`${styles.cardImg}`}
+									src={`${BASE_URL}/images/${cartItem.product.imageURL}`}
+									fluid
+								></Image>
+							</Col>
+							<Col className={``}>Product Name</Col>
+							<Col className={``}>Category</Col>
+							<Col className={``}>Price</Col>
+							<Col className={``}>Quantity</Col>
+							<Col className={``}>Subtotal</Col>
+						</Row>
+
+					);
+				})}
+			</Container> */}
 		</section>
 	);
 }

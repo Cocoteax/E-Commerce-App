@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./ItemActions.module.css";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
+import { toast } from "react-toastify";
 
 function ItemActions(props) {
 	// Destructure item from props
@@ -11,7 +12,8 @@ function ItemActions(props) {
 	// Add to cart using our redux reducer
 	const addToCartHandler = (event) => {
 		event.stopPropagation();
-		dispatch(cartActions.addToCartReducer({ newProduct: item}));
+		dispatch(cartActions.addToCartReducer({ newProduct: item }));
+        toast.success("Successfully added to cart!")
 	};
 	return (
 		<>

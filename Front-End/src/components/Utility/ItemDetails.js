@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import Loader from "./Loader";
 import BASE_URL from "../Utility/BaseURL";
+import { toast } from "react-toastify";
 
 function ItemDetails() {
 	const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function ItemDetails() {
 	// Dispatch action thunk to add to cart
 	const addToCartHandler = (product) => {
 		dispatch(cartActions.addToCartReducer({ newProduct: product }));
+		toast.success("Successfully added to cart!");
 	};
 
 	return (
