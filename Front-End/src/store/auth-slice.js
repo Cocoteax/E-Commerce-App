@@ -51,7 +51,7 @@ export const loginUser = (formData) => {
 			}
 		} catch (e) {
 			// If response throws an error, we handle it here (E.g, no user found with credentials)
-			// TODO: Build an alert UI to inform user of unsuccessful login
+			// TODO: Store the error in a redux state, access the error state in a component, and use a toast with that error
 			console.log("User not found!");
 			console.log(e);
 			dispatch(authSlice.actions.setIsAuthenticating(false));
@@ -100,11 +100,33 @@ export const registerUser = (formData) => {
 			}
 		} catch (e) {
 			// If response throws an error, we handle it here (E.g, no user found with credentials)
-			// TODO: Build an alert UI to inform user of unsuccessful login
+			// TODO: Store the error in a redux state, access the error state in a component, and use a toast with that error
 			console.log("User not found!");
 			console.log(e);
 			dispatch(authSlice.actions.setIsRegistering(false));
 			dispatch(authSlice.actions.setIsRegistered(false));
+		}
+	};
+};
+
+// Action thunk with POST request to log user out
+export const logoutUser = () => {
+	return async (dispatch) => {
+		try {
+			const response = await axios.post(
+				`${BASE_URL}/api/v1/auth/logout`,
+				null,
+				{ withCredentials: true }
+			);
+			if (response.status === 200) {
+				console.log("successful logout");
+				dispatch(authSlice.actions.setLoggedInStatus(false));
+			}
+		} catch (e) {
+			// If response throws an error, we handle it here (E.g, no user found with credentials)
+			// TODO: Store the error in a redux state, access the error state in a component, and use a toast with that error
+			console.log("Failed to logout");
+			console.log(e);
 		}
 	};
 };

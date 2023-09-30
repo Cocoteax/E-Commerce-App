@@ -2,14 +2,16 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import { Link } from "react-router-dom";
+import { Image, Row, Col, Container } from "react-bootstrap";
 import styles from "./CartItems.module.css";
+import BASE_URL from "../Utility/BaseURL";
 
 function CartItems(props) {
 	// Destructure cart item from props using nested destructuring
 	const {
 		cartItem: {
 			product,
-			product: { title, _id: productID, category, price },
+			product: { title, _id: productID, category, price, imageURL },
 			quantity,
 			subtotal,
 		},
@@ -36,9 +38,22 @@ function CartItems(props) {
 				<Link
 					to={`../products/${productID}`}
 					relative="path"
-					className={`${styles.productTitle}`}
+					className={`${styles.productTitle} m-0 p-0`}
 				>
-					{title}
+					<Container>
+						<Row>
+							<Col md={6}>
+								<Image
+									src={`${BASE_URL}/images/${imageURL}`}
+									fluid
+									rounded
+								></Image>
+							</Col>
+							<Col className={`text-center align-items-center d-flex`}>
+								{title}
+							</Col>
+						</Row>
+					</Container>
 				</Link>
 			</td>
 			<td>{category}</td>

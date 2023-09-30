@@ -2,11 +2,15 @@ import styles from "./Navigation.module.css";
 import React from "react";
 import { Navbar, Nav, Container, Offcanvas } from "react-bootstrap";
 import { NavLink, useParams, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../../store/auth-slice";
+import { toast } from "react-toastify";
 
 function Navigation() {
 	// Redux state to check if user is logged in
 	const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
+
+	const dispatch = useDispatch();
 
 	// Get access to cart total quantity redux state
 	const cartTotalQty = useSelector(
@@ -17,6 +21,12 @@ function Navigation() {
 	const params = useParams();
 	const url = useLocation().pathname;
 	const itemDetailsPage = url.includes(params.productID);
+
+	// Handle user log out
+	const handleLogout = () => {
+		dispatch(logoutUser());
+		toast.success("User successfully logged out!");
+	};
 	return (
 		<>
 			<Navbar expand="lg" className="mt-2 mb-3">
@@ -130,20 +140,18 @@ function Navigation() {
 										>
 											<i className="fa-solid fa-magnifying-glass"></i>
 										</NavLink>
-										<NavLink
-											to="profile"
-											className={`${styles.icon} ${styles.searchIcon}`}
-										>
-											<i className="fa-solid fa-user"></i>
-										</NavLink>
-										<NavLink
-											to="cart"
-											className={`${styles.icon} ${styles.searchIcon}`}
-										>
+										<NavLink to="cart" className={`${styles.icon}`}>
 											<i
 												value={cartTotalQty}
 												className={`fa-solid fa-cart-shopping ${styles.cart}`}
 											></i>
+										</NavLink>
+										<NavLink
+											to="/"
+											className={`${styles.icon}`}
+											onClick={handleLogout}
+										>
+											<i class="fa-solid fa-right-from-bracket"></i>
 										</NavLink>
 									</div>
 								)}

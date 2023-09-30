@@ -1,14 +1,31 @@
-import React from "react";
-import { Col, Container, Row, Image } from "react-bootstrap";
+import React, { useState } from "react";
+import { Col, Container, Row, Button, Modal, Image } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import CartItems from "./CartItems";
 import Loader from "../Utility/Loader";
 import BASE_URL from "../Utility/BaseURL";
 import styles from "./CartSection.module.css";
+import { toast } from "react-toastify";
 
 function CartSection() {
 	const cart = useSelector((state) => state.cartSlice.cart);
 	const fetchedCart = useSelector((state) => state.cartSlice.fetchedCart);
+
+	const [show, setShow] = useState(false);
+
+	// Initial submit order button click
+	const handleSubmitOrder = () => {
+		setShow(true);
+	};
+
+	// TODO: Handle close modal button click and submit order modal button click
+	// NOTE: Both clicks must setShow(false)
+	const handleCancelModal = () => setShow(false);
+
+	const handleConfirmSubmit = () => {
+		setShow(false);
+		toast.success("Order Submitted Successfully!");
+	};
 
 	return (
 		<section className={`mb-5`}>
@@ -23,7 +40,9 @@ function CartSection() {
 								<thead>
 									<tr>
 										<th scope="col">#</th>
-										<th scope="col">Product</th>
+										<th scope="col" style={{ width: "17rem" }}>
+											Product
+										</th>
 										<th scope="col">Category</th>
 										<th scope="col">Price</th>
 										<th scope="col">Quantity</th>
@@ -45,36 +64,103 @@ function CartSection() {
 							</table>
 						</Col>
 					</Row>
-					<Row>
+					<Row className={`mb-4`}>
 						<Col className={`text-end mt-4`}>
 							{cart && <h3>Total: ${cart.totalPrice}.00</h3>}
 						</Col>
 					</Row>
+
+					{/* MODAL SECTION */}
+					<div className={`d-flex justify-content-end`}>
+						<Button variant="primary" onClick={handleSubmitOrder}>
+							Submit Order
+						</Button>
+					</div>
+
+					<Modal show={show} onHide={handleCancelModal} centered size="md">
+						<Modal.Header closeButton>
+							<Modal.Title>Confirm Order</Modal.Title>
+						</Modal.Header>
+						<Modal.Body>
+							<Container>
+								{cart.length !== 0 &&
+									cart.cartItems.map((cartItem, index) => {
+										return (
+											<Container>
+												<Row className={`mb-2`}>
+													<Col
+														xs={4}
+														sm={3}
+														className={`${styles.modalCol} d-flex justify-content-end`}
+													>
+														<Image
+															src={`${BASE_URL}/images/${cartItem.product.imageURL}`}
+															fluid
+															rounded
+														></Image>
+													</Col>
+													<Col
+														xs={4}
+														sm={3}
+														className={`d-flex align-items-center p-0`}
+													>
+														<Container className={``}>
+															<Row className={``}>
+																<div className={`${styles.modalProductTitle}`}>
+																	{cartItem.product.title}
+																</div>
+															</Row>
+															<Row className={``}>
+																<div
+																	className={`${styles.modalProductCategory}`}
+																>
+																	{cartItem.product.category}
+																</div>
+															</Row>
+														</Container>
+													</Col>
+													<Col className={`d-flex align-items-center p-0`}>
+														<Container className={`text-end me-3`}>
+															<Row>
+																<div
+																	className={`${styles.modalProductSubtotal}`}
+																>
+																	${cartItem.subtotal}.00
+																</div>
+															</Row>
+															<Row>
+																<div
+																	className={`${styles.modalProductQuantity}`}
+																>
+																	Qty: {cartItem.quantity}
+																</div>
+															</Row>
+														</Container>
+													</Col>
+												</Row>
+											</Container>
+										);
+									})}
+							</Container>
+						</Modal.Body>
+						<Modal.Footer>
+							<Container className={`text-end mb-2`}>
+								<Row>
+									<h5 className={`${styles.modalTotalPrice}`}>
+										Total Price: ${cart.totalPrice}.00
+									</h5>
+								</Row>
+							</Container>
+							<Button variant="secondary" onClick={handleCancelModal}>
+								Cancel
+							</Button>
+							<Button variant="primary" onClick={handleConfirmSubmit}>
+								Submit Order
+							</Button>
+						</Modal.Footer>
+					</Modal>
 				</Container>
 			)}
-			{/* <Container>
-				{cart.cartItems.map((cartItem) => {
-					return (
-						<Row className={`mb-3`}>
-							<Col
-								className={`${styles.cardRow} d-flex justify-content-center`}
-							>
-								<Image
-									className={`${styles.cardImg}`}
-									src={`${BASE_URL}/images/${cartItem.product.imageURL}`}
-									fluid
-								></Image>
-							</Col>
-							<Col className={``}>Product Name</Col>
-							<Col className={``}>Category</Col>
-							<Col className={``}>Price</Col>
-							<Col className={``}>Quantity</Col>
-							<Col className={``}>Subtotal</Col>
-						</Row>
-
-					);
-				})}
-			</Container> */}
 		</section>
 	);
 }

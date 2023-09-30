@@ -31,40 +31,12 @@ if (process.env.NODE_ENV === "development") {
 // Cookie parser for setting & accessing cookies
 app.use(cookieParser());
 
-// // Middleware to retrieve the actual mongoose user object with all its defined schema methods
-// // NOTE: If we access req.session.user, it will only contain the raw user data and not the methods of the user object
-// app.use(async (req, res, next) => {
-// 	try {
-// 		if (!req.session.user) {
-// 			return next();
-// 		}
-// 		// If there's an existing session user, then we store the user object with all its methods into req.user
-// 		let user = await User.findById(req.session.user._id);
-// 		req.user = user;
-// 		next();
-// 	} catch (e) {
-// 		console.log(e);
-// 	}
-// });
-
-// Middleware to hardcode retrieve user for now
-// TODO: Convert this into a protectRoute middleware that verifies user auth and store the uset to req.user
-// app.use(async (req, res, next) => {
-// 	try {
-// 		const user = await mongoose
-// 			.model("User")
-// 			.findById("5d7a514b5d2c12c7449be042");
-// 		req.user = user;
-// 		next();
-// 	} catch (e) {
-// 		next(e);
-// 	}
-// });
-
 // Enable API to be public so that it can be accessed by different domains (Required for full stack applications)
 const corsOptions = {
-	// origin: "http://localhost:3000",
-	origin: "https://e-commerce-app-react-frontend.vercel.app",
+	origin: [
+		"http://localhost:3000",
+		"https://e-commerce-app-react-frontend.vercel.app",
+	],
 	credentials: true, //access-control-allow-credentials:true
 	optionSuccessStatus: 200,
 };

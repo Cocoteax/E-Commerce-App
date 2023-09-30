@@ -103,7 +103,6 @@ const deleteFromCart = async (req, res, next) => {
 				cart.cartItems = cart.cartItems.filter(
 					(item) => item.product.toString() !== productID
 				);
-				console.log(cart.cartItems);
 			}
 			// More than 1 quantity, just reduce by 1
 			else {

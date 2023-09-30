@@ -1,6 +1,13 @@
+import React, { useEffect } from "react";
 import "./App.css";
-import HomePage from "./pages/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCart, updateCart } from "./store/cart-slice";
+import { cartActions } from "./store/cart-slice";
+import { persistUser } from "./store/auth-slice";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import HomePage from "./pages/HomePage";
 import NavAndFooterLayout from "./pages/NavAndFooterLayout";
 import Error from "./pages/Error";
 import ShopAllPage from "./pages/ShopAllPage";
@@ -9,14 +16,7 @@ import WomenPage from "./pages/WomenPage";
 import KidsPage from "./pages/KidsPage";
 import ItemDetailsPage from "./pages/ItemDetailsPage";
 import CartPage from "./pages/CartPage";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchCart, updateCart } from "./store/cart-slice";
-import { cartActions } from "./store/cart-slice";
-import React, { useEffect } from "react";
 import LoginPage from "./pages/LoginPage";
-import { persistUser } from "./store/auth-slice";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import RegisterPage from "./pages/RegisterPage";
 
 const router = createBrowserRouter([

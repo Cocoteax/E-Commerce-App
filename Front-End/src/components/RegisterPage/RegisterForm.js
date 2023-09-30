@@ -17,7 +17,6 @@ function RegisterForm() {
 
 	// useEffect to handle navigation to login page user successfully registers
 	useEffect(() => {
-		console.log(`isRegistered: ${isRegistered}`);
 		if (!isRegistered) {
 			return;
 		}

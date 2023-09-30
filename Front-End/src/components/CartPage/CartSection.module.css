@@ -1,9 +1,29 @@
 .container {
 	width: 85%;
 }
-.cardRow {
-    height: 10rem;
+
+/* CSS styling for modal */
+.modalCol {
+	height: 8rem;
 }
+.modalProductTitle {
+	font-weight: 700;
+}
+.modalProductCategory {
+	color: #777777;
+	font-weight: 500;
+}
+.modalProductSubtotal {
+	font-weight: 700;
+}
+.modalProductQuantity {
+	color: #777777;
+	font-weight: 500;
+}
+.modalTotalPrice {
+	font-weight: 700;
+}
+
 .cardImg {
 	/* Setting height to 100% will not take up the entire column height, but only 100% of what it's allowed to take because card still needs to cater for card.body */
 	height: 100%;

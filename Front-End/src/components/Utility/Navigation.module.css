@@ -44,6 +44,10 @@
 	text-underline-offset: 0.8rem;
 }
 
+.cart {
+	margin-right: -10px;
+}
+
 .cart:after {
 	content: attr(value);
 	font-size: 10px;
@@ -59,7 +63,7 @@
 
 .loginLink:hover {
 	color: black;
-    font-weight: 700;
+	font-weight: 700;
 }
 
 @media (max-width: 991px) {
