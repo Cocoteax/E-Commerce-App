@@ -14,6 +14,10 @@ const cartSlice = createSlice({
 			state.cart = action.payload.cartItems;
 			state.fetchedCart = true;
 		},
+		resetCart(state, action) {
+			state.cart = { cartItems: [], totalQuantity: 0, totalPrice: 0 };
+			state.cartChanged = true;
+		},
 		// Redux reducer for adding product to cart (Focus on responsiveness by updating the cart state, then triggering PUT request)
 		addToCartReducer(state, action) {
 			const newProduct = action.payload.newProduct;

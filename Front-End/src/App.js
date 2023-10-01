@@ -18,6 +18,7 @@ import ItemDetailsPage from "./pages/ItemDetailsPage";
 import CartPage from "./pages/CartPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import OrdersPage from "./pages/OrdersPage";
 
 const router = createBrowserRouter([
 	{
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
 				path: "register",
 				element: <RegisterPage />,
 			},
+			{
+				path: "orders",
+				element: <OrdersPage />,
+			},
 		],
 		errorElement: <Error />,
 	},
@@ -69,7 +74,6 @@ const router = createBrowserRouter([
 function App() {
 	// Fetch cart data (See CartPage.js on why we do it here)
 	const dispatch = useDispatch();
-	const fetchedCart = useSelector((state) => state.cartSlice.fetchedCart);
 	const cartChanged = useSelector((state) => state.cartSlice.cartChanged);
 	const cart = useSelector((state) => state.cartSlice.cart);
 	const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
@@ -84,11 +88,9 @@ function App() {
 		if (!isLoggedIn) {
 			return;
 		}
-		// Fetch the cart once upon initial load
-		if (!fetchedCart) {
-			dispatch(fetchCart());
-		}
-	}, [dispatch, fetchedCart, isLoggedIn]);
+		// Fetch the cart once upon initial login since this useEffect runs whenever user logs in and out
+		dispatch(fetchCart());
+	}, [dispatch, isLoggedIn]);
 
 	// useEffect to handle updating of cart state in the cart page
 	useEffect(() => {

@@ -6,10 +6,13 @@ import Loader from "../Utility/Loader";
 import BASE_URL from "../Utility/BaseURL";
 import styles from "./CartSection.module.css";
 import { toast } from "react-toastify";
+import { submitOrder } from "../../store/order-slice";
+import { useDispatch } from "react-redux";
 
 function CartSection() {
 	const cart = useSelector((state) => state.cartSlice.cart);
 	const fetchedCart = useSelector((state) => state.cartSlice.fetchedCart);
+	const dispatch = useDispatch();
 
 	const [show, setShow] = useState(false);
 
@@ -18,11 +21,10 @@ function CartSection() {
 		setShow(true);
 	};
 
-	// TODO: Handle close modal button click and submit order modal button click
-	// NOTE: Both clicks must setShow(false)
+    // Button clicks within modal
 	const handleCancelModal = () => setShow(false);
-
 	const handleConfirmSubmit = () => {
+		dispatch(submitOrder());
 		setShow(false);
 		toast.success("Order Submitted Successfully!");
 	};
@@ -50,7 +52,7 @@ function CartSection() {
 									</tr>
 								</thead>
 								<tbody>
-									{cart.length !== 0 &&
+									{cart.cartItems.length !== 0 &&
 										cart.cartItems.map((cartItem, index) => {
 											return (
 												<CartItems
@@ -72,7 +74,11 @@ function CartSection() {
 
 					{/* MODAL SECTION */}
 					<div className={`d-flex justify-content-end`}>
-						<Button variant="primary" onClick={handleSubmitOrder}>
+						<Button
+							variant="primary"
+							onClick={handleSubmitOrder}
+							disabled={cart.cartItems.length === 0}
+						>
 							Submit Order
 						</Button>
 					</div>

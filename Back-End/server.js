@@ -19,6 +19,7 @@ const NODE_ENV = process.env.NODE_ENV; // Get node env from npm scripts
 const productRoutes = require("./routes/products");
 const cartRoutes = require("./routes/carts");
 const authRoutes = require("./routes/auth");
+const orderRoutes = require("./routes/orders");
 
 // ========== Set up middlewares ========== //
 app.use(bodyParser.urlencoded({ extended: false })); // For FORM html elements
@@ -50,6 +51,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/carts", cartRoutes);
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/orders", orderRoutes);
 
 // Error handler middleware
 // NOTE: This middleware must come after routes since we pass the error to errorHandler by calling next() within controllers

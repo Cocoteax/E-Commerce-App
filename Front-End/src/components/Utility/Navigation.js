@@ -104,16 +104,18 @@ function Navigation() {
 								>
 									<span>KIDS</span>
 								</NavLink>
-								<NavLink
-									to="orders"
-									className={({ isActive }) =>
-										isActive
-											? `${styles.active} mx-3 my-2`
-											: `${styles.navLink} mx-3 my-2`
-									}
-								>
-									<span>ORDERS</span>
-								</NavLink>
+								{isLoggedIn && (
+									<NavLink
+										to="orders"
+										className={({ isActive }) =>
+											isActive
+												? `${styles.active} mx-3 my-2`
+												: `${styles.navLink} mx-3 my-2`
+										}
+									>
+										<span>ORDERS</span>
+									</NavLink>
+								)}
 							</Nav>
 
 							<Nav

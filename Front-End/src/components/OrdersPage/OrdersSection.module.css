@@ -1,0 +1,27 @@
+.container {
+	width: 85%;
+}
+
+.breadcrumb {
+	color: #777777;
+	text-decoration: none;
+}
+
+.pageTitle {
+	font-weight: 700;
+	font-size: 72px;
+}
+
+.resultNumber {
+	color: #777777;
+}
+
+.orderHeader {
+	font-weight: 700;
+}
+.orderDetails {
+	font-weight: 500;
+}
+.icon:hover {
+	cursor: pointer;
+}

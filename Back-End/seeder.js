@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const Product = require("./models/Product");
 const User = require("./models/User");
 const Cart = require("./models/Cart");
+const Order = require("./models/Order");
 dotenv.config({ path: "./config/config.env" });
 
 // Connect to DB
@@ -37,6 +38,7 @@ const deleteData = async () => {
 		await Product.deleteMany();
 		await User.deleteMany();
 		await Cart.deleteMany();
+		await Order.deleteMany();
 		console.log("Data Deleted...");
 		process.exit();
 	} catch (e) {
@@ -49,6 +51,7 @@ const resetData = async () => {
 		await Product.deleteMany();
 		await User.deleteMany();
 		await Cart.deleteMany();
+		await Order.deleteMany();
 		console.log("Data Deleted...");
 		await Product.create(products);
 		await User.create(users);
