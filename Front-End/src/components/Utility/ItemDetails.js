@@ -14,6 +14,8 @@ function ItemDetails() {
 	// Fetch item details to be displayed from redux store
 	const product = useSelector((state) => state.productSlice.singleProduct);
 
+	const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
+
 	// Dispatch action thunk to add to cart
 	const addToCartHandler = (product) => {
 		dispatch(cartActions.addToCartReducer({ newProduct: product }));
@@ -63,12 +65,14 @@ function ItemDetails() {
 								className={`mb-3 ${styles.productPrice}`}
 							>{`$${product.price}.00`}</h4>
 							<p className={`mb-4`}>{product.description}</p>
-							<Button
-								variant="outline-dark"
-								onClick={() => addToCartHandler(product)}
-							>
-								ADD TO CART
-							</Button>
+							{isLoggedIn && (
+								<Button
+									variant="outline-dark"
+									onClick={() => addToCartHandler(product)}
+								>
+									ADD TO CART
+								</Button>
+							)}
 						</Col>
 					</Row>
 				</Container>
