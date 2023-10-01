@@ -49,9 +49,7 @@ function OrdersSection() {
 												  )}
 										</Col>
 										<Col xs={2}>
-											{open[order._id]
-												? "Order ID"
-												: `$ ${order.totalPrice}.00`}
+											{open[order._id] ? "Price" : `$ ${order.totalPrice}.00`}
 										</Col>
 										<Col xs={2}>{open[order._id] ? "Status" : "Pending"}</Col>
 										<Col xs>
