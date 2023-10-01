@@ -11,8 +11,13 @@ function OrdersSection() {
 
 	// Set the first alert to be open initially
 	useEffect(() => {
+		// Reset open states
+		setOpen({});
+
+		// Set the first alert to be open initially
 		if (orders.length > 0) {
-			setOpen((prevState) => ({ ...prevState, [orders[0]._id]: true }));
+			const firstOrderId = orders[0]._id;
+			setOpen((prevOpen) => ({ ...prevOpen, [firstOrderId]: true }));
 		}
 	}, [orders]);
 

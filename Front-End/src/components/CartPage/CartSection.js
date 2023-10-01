@@ -107,7 +107,7 @@ function CartSection() {
 													</Col>
 													<Col
 														xs={4}
-														sm={3}
+														sm={5}
 														className={`d-flex align-items-center p-0`}
 													>
 														<Container className={``}>
