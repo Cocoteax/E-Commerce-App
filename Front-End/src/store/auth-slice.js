@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import BASE_URL from "../components/Utility/BaseURL";
 import orderSlice from "./order-slice";
+import cartSlice from "./cart-slice";
 
 const authSlice = createSlice({
 	name: "auth",
@@ -123,6 +124,7 @@ export const logoutUser = () => {
 				console.log("successful logout");
 				dispatch(authSlice.actions.setLoggedInStatus(false));
 				dispatch(orderSlice.actions.clearOrderOnLogout());
+				dispatch(cartSlice.actions.setFetchedCart(false)); // Reset fetchedCart state to false when user logs out
 			}
 		} catch (e) {
 			// If response throws an error, we handle it here (E.g, no user found with credentials)

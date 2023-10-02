@@ -31,7 +31,7 @@ function OrdersSection() {
 				{orders.map((order) => {
 					return (
 						<Row className={`mb-3`}>
-							<Alert variant="success" className={`m-0`}>
+							<Alert variant="primary" className={`m-0`}>
 								<Container>
 									<Row className={`${styles.orderHeader} align-items-center`}>
 										<Col xs={2}>
@@ -52,24 +52,19 @@ function OrdersSection() {
 											{open[order._id] ? "Price" : `$ ${order.totalPrice}.00`}
 										</Col>
 										<Col xs={2}>{open[order._id] ? "Status" : "Pending"}</Col>
-										<Col xs>
+										<Col xs={1} className={``}>
 											{open[order._id] ? (
 												"Action"
 											) : (
-												<Col
-													xs
-													className={`d-flex justify-content-end align-items-center me-4`}
-												>
-													<i
-														className={`fa-solid fa-gear p-2 rounded bg-light ${styles.icon}`}
-														onClick={() => handleClick(order._id)}
-													></i>
-												</Col>
+												<i
+													className={`fa-solid fa-gear p-2 rounded bg-light ${styles.icon}`}
+													onClick={() => handleClick(order._id)}
+												></i>
 											)}
 										</Col>
 										<Col
-											xs
-											className={`d-flex justify-content-end align-items-center me-4`}
+											xs={1}
+											className={`d-flex justify-content-start align-items-center`}
 										>
 											<i
 												className={`fa-solid fa-chevron-down p-2 rounded bg-light ${styles.icon}`}
@@ -95,7 +90,7 @@ function OrdersSection() {
 												</Col>
 												<Col xs={2}>${order.totalPrice}.00</Col>
 												<Col xs={2}>Pending</Col>
-												<Col xs>
+												<Col xs={2}>
 													<i
 														className={`fa-solid fa-gear p-2 rounded bg-light ${styles.icon}`}
 														onClick={() => handleClick(order._id)}
@@ -113,7 +108,7 @@ function OrdersSection() {
 													Order Details
 												</h4>
 												<Container>
-													<Row>
+													<Row className={`table-responsive`}>
 														<Table
 															striped
 															hover

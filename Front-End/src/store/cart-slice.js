@@ -18,6 +18,10 @@ const cartSlice = createSlice({
 			state.cart = { cartItems: [], totalQuantity: 0, totalPrice: 0 };
 			state.cartChanged = true;
 		},
+		// Used to reset fetchedCart state whenever user logs out
+		setFetchedCart(state, action) {
+			state.fetchedCart = action.payload;
+		},
 		// Redux reducer for adding product to cart (Focus on responsiveness by updating the cart state, then triggering PUT request)
 		addToCartReducer(state, action) {
 			const newProduct = action.payload.newProduct;

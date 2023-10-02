@@ -75,6 +75,7 @@ function App() {
 	// Fetch cart data (See CartPage.js on why we do it here)
 	const dispatch = useDispatch();
 	const cartChanged = useSelector((state) => state.cartSlice.cartChanged);
+	const fetchedCart = useSelector((state) => state.cartSlice.fetchedCart);
 	const cart = useSelector((state) => state.cartSlice.cart);
 	const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
 
@@ -88,9 +89,12 @@ function App() {
 		if (!isLoggedIn) {
 			return;
 		}
-		// Fetch the cart once upon initial login since this useEffect runs whenever user logs in and out
-		dispatch(fetchCart());
-	}, [dispatch, isLoggedIn]);
+		// Fetch the cart whenever user logs in
+		// NOTE: Upon user logout, fetchedCart will be resetted to false, so fetchCart() will always execute when user logs in
+		if (!fetchedCart) {
+			dispatch(fetchCart());
+		}
+	}, [dispatch, isLoggedIn, fetchedCart]);
 
 	// useEffect to handle updating of cart state in the cart page
 	useEffect(() => {
